@@ -1,0 +1,30 @@
+[submodule "templates/exherbo"]
+	path = templates/exherbo
+	url = git://github.com/vtolstov/packer-exherbo.git
+[submodule "templates/archlinux"]
+	path = templates/archlinux
+	url = git://github.com/vtolstov/packer-archlinux.git
+[submodule "templates/centos"]
+	path = templates/centos
+	url = git://github.com/vtolstov/packer-centos.git
+[submodule "templates/debian"]
+	path = templates/debian
+	url = git://github.com/vtolstov/packer-debian.git
+[submodule "templates/fedora"]
+	path = templates/fedora
+	url = git://github.com/vtolstov/packer-fedora.git
+[submodule "templates/freebsd"]
+	path = templates/freebsd
+	url = git://github.com/vtolstov/packer-freebsd.git
+[submodule "templates/gentoo"]
+	path = templates/gentoo
+	url = git://github.com/vtolstov/packer-gentoo.git
+[submodule "templates/opensuse"]
+	path = templates/opensuse
+	url = git://github.com/vtolstov/packer-opensuse.git
+[submodule "templates/ubuntu"]
+	path = templates/ubuntu
+	url = git://github.com/vtolstov/packer-ubuntu.git
+[submodule "templates/mighost"]
+	path = templates/mighost
+	url = git@github.com:vtolstov/packer-mighost.git
