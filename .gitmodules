@@ -28,3 +28,9 @@
 [submodule "templates/mighost"]
 	path = templates/mighost
 	url = git@github.com:vtolstov/packer-mighost.git
+[submodule "templates/clodo"]
+	path = templates/clodo
+	url = ssh://git@stash.clodo.ru/cl15/packer-clodo.git
+[submodule "templates/clodo2"]
+	path = templates/clodo2
+	url = ssh://git@stash.clodo.ru/clodo/packer-clodo2.git
