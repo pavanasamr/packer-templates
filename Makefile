@@ -6,15 +6,18 @@ PATH := bin:$(PATH)
 %:
 	@$(eval p := $(subst /, , $*))
 	$(MAKE) -C templates/$(word 1, $(p)) $(patsubst $(word 1, $(p))/%,%, $*)
+	@mv templates/$(word 1, $(p))/images/
 
 compress:
-	@echo compress
+	@echo Compress images
 
 update:
+	@echo Updating modules
 	@git submodule init
 	@git submodule update --remote --merge
 
 clean:
+	@echo Cleanup templates/
 	@rm -rf templates/
 
 install:

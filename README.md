@@ -1,11 +1,15 @@
 packer-builder
 ==============
 
-After clone:
+Clone:
+
+* git clone --recurse-submodules git@github.com:vtolstov/packer-builder.git
+
+Prepare:
 
 * make install
 * make update
 
-To build target
+Build:
 
 * make archlinux/current/x86_64/qemu
