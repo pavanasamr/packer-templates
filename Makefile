@@ -16,6 +16,7 @@ update:
 	@echo Updating modules
 	@git submodule init
 	@git submodule update --remote --merge
+	@git submodule foreach --recursive 'branch="$(git config -f ${toplevel}/.gitmodules submodule.${name}.branch)"; git checkout ${branch}'
 
 clean:
 	@echo Cleanup templates/
