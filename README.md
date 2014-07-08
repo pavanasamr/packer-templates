@@ -3,7 +3,7 @@ packer-builder
 
 Clone:
 
-* git clone --recurse-submodules git@github.com:vtolstov/packer-builder.git
+* git clone https://github.com/vtolstov/packer-builder.git
 
 Prepare:
 
