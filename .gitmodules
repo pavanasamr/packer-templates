@@ -1,41 +1,52 @@
 [submodule "templates/exherbo"]
 	path = templates/exherbo
 	url = git://github.com/vtolstov/packer-exherbo.git
-  branch = master
+	branch = master
 [submodule "templates/archlinux"]
 	path = templates/archlinux
 	url = git://github.com/vtolstov/packer-archlinux.git
-  branch = master
+	branch = master
 [submodule "templates/centos"]
 	path = templates/centos
 	url = git://github.com/vtolstov/packer-centos.git
-  branch = master
+	branch = master
 [submodule "templates/debian"]
 	path = templates/debian
 	url = git://github.com/vtolstov/packer-debian.git
-  branch = master
+	branch = master
 [submodule "templates/fedora"]
 	path = templates/fedora
 	url = git://github.com/vtolstov/packer-fedora.git
-  branch = master
+	branch = master
 [submodule "templates/freebsd"]
 	path = templates/freebsd
 	url = git://github.com/vtolstov/packer-freebsd.git
-  branch = master
+	branch = master
 [submodule "templates/gentoo"]
 	path = templates/gentoo
 	url = git://github.com/vtolstov/packer-gentoo.git
-  branch = master
+	branch = master
 [submodule "templates/opensuse"]
 	path = templates/opensuse
 	url = git://github.com/vtolstov/packer-opensuse.git
-  branch = master
+	branch = master
 [submodule "templates/ubuntu"]
 	path = templates/ubuntu
 	url = git://github.com/vtolstov/packer-ubuntu.git
-  branch = master
+	branch = master
 [submodule "templates/mighost"]
 	path = templates/mighost
 	url = git@github.com:vtolstov/packer-mighost.git
+	branch = master
+[submodule "templates/clodo"]
+	path = templates/clodo
+	url = ssh://git@stash.clodo.ru/cl15/packer-clodo.git
+	branch = master
+[submodule "templates/clodo2"]
+	path = templates/clodo2
+	url = ssh://git@stash.clodo.ru/clodo/packer-clodo2.git
+	branch = master
+[submodule "templates/clodo21"]
+  path = templates/clodo21
+  url = ssh://git@stash.clodo.ru/clodo/packer-clodo21.git
   branch = master
-

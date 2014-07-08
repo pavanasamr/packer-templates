@@ -15,8 +15,17 @@ compress:
 update:
 	@echo Updating modules
 	@git submodule init
-	@git submodule update --remote --merge
-	@git submodule foreach --recursive 'branch="$(git config -f ${toplevel}/.gitmodules submodule.${name}.branch)"; git checkout ${branch}; git pull'
+	@git config -f .gitmodules --get-regexp '^submodule\..*\.path$$' | cut -d " " -f2 | while read module; \
+	do \
+		url=$$(git config -f .gitmodules --get submodule.$${module}.url); \
+		branch=$$(git config -f .gitmodules --get submodule.$${module}.branch); \
+		path=$$(git config -f .gitmodules --get submodule.$${module}.path); \
+		if [ ! -d $${path} ]; then \
+			git submodule --quiet add -b $${branch} $${url} $${path} 2>/dev/null || echo "submodule fail $${url} $${path} $${branch}"; \
+		fi \
+	done
+	@git submodule update --remote --rebase --recursive
+	@git submodule foreach --recursive 'branch=$$(git config -f $${toplevel}/.gitmodules submodule.$${name}.branch); git checkout -q $${branch}'
 
 clean:
 	@echo Cleanup templates/
