@@ -7,7 +7,6 @@ PATH := $(PWD)/bin:$(PATH)
 %:
 	@$(eval p := $(subst /, , $*))
 	$(MAKE) -C $(PWD)/templates/$(word 1, $(p)) $(patsubst $(word 1, $(p))/%,%, $*)
-	#@mv $(PWD)/templates/$(word 1, $(p))/images/
 
 compress:
 	@echo Compress images
