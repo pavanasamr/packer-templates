@@ -37,3 +37,8 @@ install:
 	@wget -c -q https://dl.bintray.com/mitchellh/packer/0.6.0_linux_amd64.zip -O $(PWD)/bin/packer.zip
 	@unzip -q -o -d $(PWD)/bin/ $(PWD)/bin/packer.zip
 	@rm -f $(PWD)/bin/packer.zip
+	@echo Install plugins
+	@GOPATH=/tmp GOBIN=$(PWD)/bin/ go get -u github.com/vtolstov/packer-post-processor-shell
+	@GOPATH=/tmp GOBIN=$(PWD)/bin/ go get -u github.com/vtolstov/packer-post-processor-strip
+	@GOPATH=/tmp GOBIN=$(PWD)/bin/ go get -u github.com/vtolstov/packer-post-processor-squashfs
+	@GOPATH=/tmp GOBIN=$(PWD)/bin/ go get -u github.com/vtolstov/packer-post-processor-compress
