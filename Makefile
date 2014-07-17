@@ -2,15 +2,17 @@ SHELL := /bin/bash
 PWD := $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
 PATH := $(PWD)/bin:$(PATH)
 
-.PHONY : clean update compress install
+.PHONY : clean update install list
 
 %:
 	@$(eval p := $(subst /, , $*))
 	$(MAKE) -C $(PWD)/templates/$(word 1, $(p)) $(patsubst $(word 1, $(p))/%,%, $*)
-	#@mv $(PWD)/templates/$(word 1, $(p))/images/
 
-compress:
-	@echo Compress images
+list:
+	@$(eval templates := $(patsubst templates/%,%, $(shell ls -1 templates/*/*.json | awk -F '.json' '{print $$1}')))
+	@for template in $(templates); do \
+		echo "$${template}" ;\
+	done
 
 update:
 	@echo Updating modules
