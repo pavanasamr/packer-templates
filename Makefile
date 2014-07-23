@@ -28,10 +28,12 @@ update:
 		fi ;\
 		echo "try to update submodule $${path}" ;\
 		git submodule update --remote --rebase --recursive ${path} || echo "submodule fail $${url} $${path} $${branch}";\
-		pushd $${path} >/dev/null;\
-		echo "checkout submodule $${path} branch $${branch}" ;\
-		git checkout -q $${branch} || echo "submodule fail $${url} $${path} $${branch}";\
-		popd >/dev/null;\
+		if [ -d $${path} ]; then \
+			pushd $${path} >/dev/null;\
+			echo "checkout submodule $${path} branch $${branch}" ;\
+			git checkout -q $${branch} || echo "submodule fail $${url} $${path} $${branch}";\
+			popd >/dev/null;\
+		fi ;\
 	done
 
 clean:
