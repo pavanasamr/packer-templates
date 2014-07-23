@@ -39,7 +39,7 @@ clean:
 	@rm -rf $(PWD)/templates/
 
 install:
-	@mkdir $(PWD)/tmp
+	@mkdir -p $(PWD)/tmp
 	@echo Install packer
 	@rm -rf $(PWD)/bin/*
 	@wget -c -q https://dl.bintray.com/mitchellh/packer/0.6.0_linux_amd64.zip -O $(PWD)/bin/packer.zip
