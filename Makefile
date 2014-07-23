@@ -9,7 +9,7 @@ PATH := $(PWD)/bin:$(PATH)
 	$(MAKE) -C $(PWD)/templates/$(word 1, $(p)) $(patsubst $(word 1, $(p))/%,%, $*)
 
 list:
-	@$(eval templates := $(patsubst templates/%,%, $(shell ls -1 templates/*/*.json | awk -F '.json' '{print $$1}')))
+	@$(eval templates := $(patsubst templates/%,%, $(shell ls -1 templates/*/*.json | awk -F '.json' '{print $$1}' | sed 's|-|/|g')))
 	@for template in $(templates); do \
 		echo "$${template}" ;\
 	done
