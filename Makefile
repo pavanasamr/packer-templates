@@ -27,7 +27,7 @@ update:
 			git submodule --quiet add -b $${branch} $${url} $${path} 2>/dev/null || echo "submodule fail $${url} $${path} $${branch}"; \
 		fi ;\
 		echo "try to update submodule $${path}" ;\
-		git submodule update --remote --rebase --recursive ${path} || echo "submodule fail $${url} $${path} $${branch}";\
+		git submodule update --remote --rebase --recursive $${path} || echo "submodule fail $${url} $${path} $${branch}";\
 		if [ -d $${path} ]; then \
 			pushd $${path} >/dev/null;\
 			echo "checkout submodule $${path} branch $${branch}" ;\
