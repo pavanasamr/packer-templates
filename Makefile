@@ -2,14 +2,17 @@ SHELL := /bin/bash
 PWD := $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
 PATH := $(PWD)/bin:$(PATH)
 
-.PHONY : clean update compress install
+.PHONY : clean update install list
 
 %:
 	@$(eval p := $(subst /, , $*))
 	$(MAKE) -C $(PWD)/templates/$(word 1, $(p)) $(patsubst $(word 1, $(p))/%,%, $*)
 
-compress:
-	@echo Compress images
+list:
+	@$(eval templates := $(patsubst templates/%,%, $(shell ls -1 templates/*/*.json | awk -F '.json' '{print $$1}' | sed 's|-|/|g')))
+	@for template in $(templates); do \
+		echo "$${template}" ;\
+	done
 
 update:
 	@echo Updating modules
@@ -36,3 +39,8 @@ install:
 	@wget -c -q https://dl.bintray.com/mitchellh/packer/0.6.0_linux_amd64.zip -O $(PWD)/bin/packer.zip
 	@unzip -q -o -d $(PWD)/bin/ $(PWD)/bin/packer.zip
 	@rm -f $(PWD)/bin/packer.zip
+	@echo Install plugins
+	@GOPATH=/tmp GOBIN=$(PWD)/bin/ go get -u github.com/vtolstov/packer-post-processor-shell
+	@GOPATH=/tmp GOBIN=$(PWD)/bin/ go get -u github.com/vtolstov/packer-post-processor-strip
+	@GOPATH=/tmp GOBIN=$(PWD)/bin/ go get -u github.com/vtolstov/packer-post-processor-squashfs
+	@GOPATH=/tmp GOBIN=$(PWD)/bin/ go get -u github.com/vtolstov/packer-post-processor-compress
