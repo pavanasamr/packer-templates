@@ -26,7 +26,7 @@ update:
 			git submodule --quiet add -b $${branch} $${url} $${path} 2>/dev/null || echo "submodule fail $${url} $${path} $${branch}"; \
 		fi \
 	done
-	@git submodule update --remote --rebase --recursive
+	@git submodule update --remote --rebase --recursive || echo "some modules can't update"
 	@git submodule foreach --recursive 'branch=$$(git config -f $${toplevel}/.gitmodules submodule.$${name}.branch); git checkout -q $${branch}'
 
 clean:
