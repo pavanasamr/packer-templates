@@ -48,5 +48,5 @@
 	branch = master
 [submodule "templates/coreos"]
 	path = templates/coreos
-	url = https://github.com/vtolstov/packer-coreos.git
+	url = git://github.com/vtolstov/packer-coreos.git
 	branch = master
