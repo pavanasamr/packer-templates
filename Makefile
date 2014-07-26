@@ -42,15 +42,12 @@ update:
 		branch=$$(git config -f .gitmodules --get submodule.$${module}.branch); \
 		path=$$(git config -f .gitmodules --get submodule.$${module}.path); \
 		if [ ! -d $${path} ]; then \
-			echo "try to add submodule $${path}" ;\
-			git submodule --quiet add -b $${branch} $${url} $${path} 2>/dev/null || echo "submodule fail $${url} $${path} $${branch}"; \
+			git submodule --quiet add -b $${branch} $${url} $${path} 2>/dev/null >/dev/null || echo "submodule fail $${url} $${path} $${branch}"; \
 		fi ;\
-		echo "try to update submodule $${path}" ;\
-		git submodule update --remote --rebase --recursive $${path} || echo "submodule fail $${url} $${path} $${branch}";\
+		git submodule update --remote --rebase --recursive $${path} 2>/dev/null >/dev/null || echo "submodule fail $${url} $${path} $${branch}";\
 		if [ -d $${path} ]; then \
 			pushd $${path} >/dev/null;\
-			echo "checkout submodule $${path} branch $${branch}" ;\
-			git checkout -q $${branch} || echo "submodule fail $${url} $${path} $${branch}";\
+			git checkout -q $${branch} 2>/dev/null >/dev/null || echo "submodule fail $${url} $${path} $${branch}";\
 			popd >/dev/null;\
 		fi ;\
 	done
