@@ -5,7 +5,26 @@ PATH := $(PWD)/bin:$(PATH)
 .PHONY : clean update install list
 
 %:
-	@$(eval p := $(subst /, , $*))
+	$(eval p := $(subst /, , $*))
+	@git config -f .gitmodules --get-regexp '^submodule\..*\.path$$' | sort | cut -d " " -f2 | while read module; \
+	do \
+		if [ "x$${module}" != "xtemplates/$(word 1, $(p))" ]; then \
+			continue ;\
+		fi ;\
+		url=$$(git config -f .gitmodules --get submodule.$${module}.url); \
+		branch=$$(git config -f .gitmodules --get submodule.$${module}.branch); \
+		path=$$(git config -f .gitmodules --get submodule.$${module}.path); \
+		if [ ! -d $${path} ]; then \
+			echo "try to add submodule $${path}" ;\
+			git submodule --quiet add -b $${branch} $${url} $${path} ;\
+		fi ;\
+		echo "try to update submodule $${path}" ;\
+		git submodule update --remote --rebase --recursive $${path} ;\
+		pushd $${path} >/dev/null;\
+		echo "checkout submodule $${path} branch $${branch}" ;\
+		git checkout -q $${branch} || echo "submodule fail $${url} $${path} $${branch}";\
+		popd >/dev/null;\
+	done
 	$(MAKE) -C $(PWD)/templates/$(word 1, $(p)) $(patsubst $(word 1, $(p))/%,%, $*)
 
 list:
