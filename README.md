@@ -7,9 +7,20 @@ Clone:
 
 Prepare:
 
-* make install
+* make source
 * make update
 
 Build:
 
-* make archlinux/current/x86_64/qemu
+* make build archlinux-current-x86_64
+
+Install:
+
+* make install archlinux-current-x86_64 DESTDIR=/srv/images/
+
+Dependencies:
+
+* libguestfs
+* squashfs-tools
+* fuse
+

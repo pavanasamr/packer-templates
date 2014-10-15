@@ -1,38 +1,38 @@
 [submodule "templates/exherbo"]
 	path = templates/exherbo
-	url = git://github.com/vtolstov/packer-exherbo.git
+	url = https://github.com/vtolstov/packer-exherbo.git
 	branch = master
 [submodule "templates/archlinux"]
 	path = templates/archlinux
-	url = git://github.com/vtolstov/packer-archlinux.git
+	url = https://github.com/vtolstov/packer-archlinux.git
 	branch = master
 [submodule "templates/centos"]
 	path = templates/centos
-	url = git://github.com/vtolstov/packer-centos.git
+	url = https://github.com/vtolstov/packer-centos.git
 	branch = master
 [submodule "templates/debian"]
 	path = templates/debian
-	url = git://github.com/vtolstov/packer-debian.git
+	url = https://github.com/vtolstov/packer-debian.git
 	branch = master
 [submodule "templates/fedora"]
 	path = templates/fedora
-	url = git://github.com/vtolstov/packer-fedora.git
+	url = https://github.com/vtolstov/packer-fedora.git
 	branch = master
 [submodule "templates/freebsd"]
 	path = templates/freebsd
-	url = git://github.com/vtolstov/packer-freebsd.git
+	url = https://github.com/vtolstov/packer-freebsd.git
 	branch = master
 [submodule "templates/gentoo"]
 	path = templates/gentoo
-	url = git://github.com/vtolstov/packer-gentoo.git
+	url = https://github.com/vtolstov/packer-gentoo.git
 	branch = master
 [submodule "templates/opensuse"]
 	path = templates/opensuse
-	url = git://github.com/vtolstov/packer-opensuse.git
+	url = https://github.com/vtolstov/packer-opensuse.git
 	branch = master
 [submodule "templates/ubuntu"]
 	path = templates/ubuntu
-	url = git://github.com/vtolstov/packer-ubuntu.git
+	url = https://github.com/vtolstov/packer-ubuntu.git
 	branch = master
 [submodule "templates/mighost"]
 	path = templates/mighost
@@ -48,5 +48,5 @@
 	branch = master
 [submodule "templates/coreos"]
 	path = templates/coreos
-	url = git://github.com/vtolstov/packer-coreos.git
+	url = https://github.com/vtolstov/packer-coreos.git
 	branch = master
