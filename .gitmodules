@@ -50,7 +50,11 @@
 	path = templates/coreos
 	url = git://github.com/vtolstov/packer-coreos.git
 	branch = master
-[submodule "templates/altlinux"]
-	path = templates/altlinux
-	url = git://github.com/vtolstov/packer-altlinux.git
+[submodule "templates/altlinuxspt"]
+	path = templates/altlinuxspt
+	url = git://github.com/vtolstov/packer-altlinuxspt.git
 	branch = master
+[submodule "templates/altlinux"]
+  path = templates/altlinux
+  url = git://github.com/vtolstov/packer-altlinux.git
+  branch = master
