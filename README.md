@@ -25,5 +25,5 @@ Dependencies:
 * fuse (for packer-postprocessor-strip)
 * golang (needs to be in source target)
 * mercurial (for source target)
-
+* qemu
 

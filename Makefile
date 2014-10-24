@@ -1,4 +1,4 @@
-SHELL := /bin/sh
+SHELL := /bin/bash
 PWD := $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
 PATH := $(PWD)/bin:$(PATH)
 DESTDIR ?= $(PWD)/images/
