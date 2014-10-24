@@ -20,7 +20,10 @@ Install:
 
 Dependencies:
 
-* libguestfs
-* squashfs-tools
-* fuse
+* libguestfs (for packer-postprocessor-strip)
+* squashfs-tools (for packer-postprocessor-strip)
+* fuse (for packer-postprocessor-strip)
+* golang (needs to be in source target)
+* mercurial (for source target)
+
 
