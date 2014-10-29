@@ -94,12 +94,10 @@ source:
 	@rm -rf $(PWD)/tmp/bin/
 	@mkdir $(PWD)/tmp/bin/
 	@mkdir -p $(PWD)/tmp/src/github.com/mitchellh/
-#	@test -d $(PWD)/tmp/src/github.com/mitchellh/packer || git clone git@github.com:mitchellh/packer.git $(PWD)/tmp/src/github.com/mitchellh/packer
-	@test -d $(PWD)/tmp/src/github.com/mitchellh/packer || git clone --branch digitalocean --single-branch git@github.com:vtolstov/packer.git $(PWD)/tmp/src/github.com/mitchellh/packer
+	@test -d $(PWD)/tmp/src/github.com/mitchellh/packer || git clone git@github.com:mitchellh/packer.git $(PWD)/tmp/src/github.com/mitchellh/packer
+	@test -d $(PWD)/tmp/src/github.com/mitchellh/packer && bash -c "cd $(PWD)/tmp/src/github.com/mitchellh/packer; git pull; "
 	@bash -c "cd $(PWD)/tmp/src/github.com/mitchellh/packer; curl -s https://github.com/mitchellh/packer/pull/1342.diff | patch -p1"
 	@GOPATH=$(PWD)/tmp GOBIN=$(PWD)/bin/ make -C $(PWD)/tmp/src/github.com/mitchellh/packer dev || :
 	@mv $(PWD)/tmp/src/github.com/mitchellh/packer/bin/* $(PWD)/bin/
-	@GOPATH=$(PWD)/tmp GOBIN=$(PWD)/bin/ go get github.com/vtolstov/packer-post-processor-shell
-	@GOPATH=$(PWD)/tmp GOBIN=$(PWD)/bin/ go get github.com/vtolstov/packer-post-processor-strip
 	@GOPATH=$(PWD)/tmp GOBIN=$(PWD)/bin/ go get github.com/vtolstov/packer-post-processor-squashfs
 	@GOPATH=$(PWD)/tmp GOBIN=$(PWD)/bin/ go get github.com/vtolstov/packer-post-processor-compress
