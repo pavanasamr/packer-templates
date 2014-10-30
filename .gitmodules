@@ -58,3 +58,7 @@
 	path = templates/altlinux
 	url = git://github.com/vtolstov/packer-altlinux.git
 	branch = master
+[submodule "templates/charms"]
+  path = templates/charms
+  url = git://github.com/vtolstov/packer-charms.git
+  branch = master
