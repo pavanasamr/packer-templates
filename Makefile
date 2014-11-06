@@ -83,8 +83,6 @@ tools:
 	@unzip -q -o -d $(PWD)/bin/ $(PWD)/bin/packer.zip
 	@rm -f $(PWD)/bin/packer.zip
 	@echo Install plugins
-	@GOPATH=$(PWD)/tmp GOBIN=$(PWD)/bin/ go get -u github.com/vtolstov/packer-post-processor-shell
-	@GOPATH=$(PWD)/tmp GOBIN=$(PWD)/bin/ go get -u github.com/vtolstov/packer-post-processor-strip
 	@GOPATH=$(PWD)/tmp GOBIN=$(PWD)/bin/ go get -u github.com/vtolstov/packer-post-processor-squashfs
 	@GOPATH=$(PWD)/tmp GOBIN=$(PWD)/bin/ go get -u github.com/vtolstov/packer-post-processor-compress
 
@@ -97,6 +95,7 @@ source:
 	@test -d $(PWD)/tmp/src/github.com/mitchellh/packer || git clone git@github.com:mitchellh/packer.git $(PWD)/tmp/src/github.com/mitchellh/packer
 	@test -d $(PWD)/tmp/src/github.com/mitchellh/packer && bash -c "cd $(PWD)/tmp/src/github.com/mitchellh/packer; git pull; "
 	@bash -c "cd $(PWD)/tmp/src/github.com/mitchellh/packer; curl -s https://github.com/mitchellh/packer/pull/1645.diff | patch -p1"
+	@bash -c "cd $(PWD)/tmp/src/github.com/mitchellh/packer; curl -s 'https://github.com/vtolstov/packer/compare/master...digitalocean.patch' | patch -p1"
 	@GOPATH=$(PWD)/tmp GOBIN=$(PWD)/bin/ make -C $(PWD)/tmp/src/github.com/mitchellh/packer dev || :
 	@mv $(PWD)/tmp/src/github.com/mitchellh/packer/bin/* $(PWD)/bin/
 	@GOPATH=$(PWD)/tmp GOBIN=$(PWD)/bin/ go get github.com/vtolstov/packer-post-processor-squashfs
