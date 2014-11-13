@@ -94,9 +94,9 @@ source:
 	@mkdir -p $(PWD)/tmp/src/github.com/mitchellh/
 	@test -d $(PWD)/tmp/src/github.com/mitchellh/packer || git clone git@github.com:mitchellh/packer.git $(PWD)/tmp/src/github.com/mitchellh/packer
 	@test -d $(PWD)/tmp/src/github.com/mitchellh/packer && bash -c "cd $(PWD)/tmp/src/github.com/mitchellh/packer; git pull; "
-	@bash -c "cd $(PWD)/tmp/src/github.com/mitchellh/packer; curl -s https://github.com/mitchellh/packer/pull/1645.diff | patch -p1"
-	@bash -c "cd $(PWD)/tmp/src/github.com/mitchellh/packer; curl -s 'https://github.com/vtolstov/packer/compare/master...digitalocean.patch' | tail -78 | patch -p1"
-	@bash -c "cd $(PWD)/tmp/src/github.com/mitchellh/packer; curl -s 'https://github.com/vtolstov/packer/compare/master...disk_image.patch' | patch -p1"
+	@bash -c "cd $(PWD)/tmp/src/github.com/mitchellh/packer; curl -s 'https://github.com/mitchellh/packer/pull/1645.patch' | patch -p1"
+	@bash -c "cd $(PWD)/tmp/src/github.com/mitchellh/packer; curl -s 'https://github.com/mitchellh/packer/pull/1650.patch' | patch -N -p1 || true"
+	@bash -c "cd $(PWD)/tmp/src/github.com/mitchellh/packer; curl -s 'https://github.com/mitchellh/packer/pull/1662.patch' | patch -p1"
 	@GOPATH=$(PWD)/tmp GOBIN=$(PWD)/bin/ make -C $(PWD)/tmp/src/github.com/mitchellh/packer dev || :
 	@mv $(PWD)/tmp/src/github.com/mitchellh/packer/bin/* $(PWD)/bin/
 	@GOPATH=$(PWD)/tmp GOBIN=$(PWD)/bin/ go get github.com/vtolstov/packer-post-processor-squashfs

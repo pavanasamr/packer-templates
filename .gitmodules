@@ -62,3 +62,11 @@
   path = templates/charms
   url = git://github.com/vtolstov/packer-charms.git
   branch = master
+[submodule "templates/openbsd"]
+	path = templates/openbsd
+	url = git://github.com/vtolstov/packer-openbsd.git
+	branch = master
+[submodule "templates/freepbx"]
+	path = templates/freepbx
+	url = git://github.com/vtolstov/packer-freepbx.git
+	branch = master
