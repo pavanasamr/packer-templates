@@ -58,10 +58,6 @@
 	path = templates/altlinux
 	url = git://github.com/vtolstov/packer-altlinux.git
 	branch = master
-[submodule "templates/charms"]
-  path = templates/charms
-  url = git://github.com/vtolstov/packer-charms.git
-  branch = master
 [submodule "templates/openbsd"]
 	path = templates/openbsd
 	url = git://github.com/vtolstov/packer-openbsd.git
@@ -69,4 +65,28 @@
 [submodule "templates/freepbx"]
 	path = templates/freepbx
 	url = git://github.com/vtolstov/packer-freepbx.git
+	branch = master
+[submodule "templates/wordpress"]
+	path = templates/wordpress
+	url = git://github.com/vtolstov/packer-wordpress.git
+	branch = master
+[submodule "templates/joomla"]
+	path = templates/joomla
+	url = git://github.com/vtolstov/packer-joomla.git
+	branch = master
+[submodule "templates/bitrixenv"]
+	path = templates/bitrixenv
+	url = git://github.com/vtolstov/packer-bitrixenv.git
+	branch = master
+[submodule "templates/drupal"]
+	path = templates/drupal
+	url = git://github.com/vtolstov/packer-drupal.git
+	branch = master
+[submodule "templates/ajenty"]
+	path = templates/ajenty
+	url = git://github.com/vtolstov/packer-ajenty.git
+	branch = master
+[submodule "templates/lamp"]
+	path = templates/lamp
+	url = git://github.com/vtolstov/packer-lamp.git
 	branch = master
