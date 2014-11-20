@@ -90,3 +90,7 @@
 	path = templates/lamp
 	url = git://github.com/vtolstov/packer-lamp.git
 	branch = master
+[submodule "templates/django"]
+	path = templates/django
+	url = git://github.com/vtolstov/packer-django.git
+	branch = master
