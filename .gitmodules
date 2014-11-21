@@ -82,9 +82,13 @@
 	path = templates/drupal
 	url = git://github.com/vtolstov/packer-drupal.git
 	branch = master
-[submodule "templates/ajenty"]
-	path = templates/ajenty
-	url = git://github.com/vtolstov/packer-ajenty.git
+[submodule "templates/ajenti"]
+	path = templates/ajenti
+	url = git://github.com/methodx/packer-ajenti.git
+	branch = master
+[submodule "templates/dokku"]
+	path = templates/dokku
+	url = git://github.com/methodx/packer-dokku.git
 	branch = master
 [submodule "templates/lamp"]
 	path = templates/lamp
