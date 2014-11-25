@@ -22,6 +22,10 @@
 	path = templates/freebsd
 	url = git://github.com/vtolstov/packer-freebsd.git
 	branch = master
+[submodule "templates/freepbx"]
+  path = templates/freepbx
+  url = git://github.com/vtolstov/packer-freepbx.git
+  branch = master
 [submodule "templates/gentoo"]
 	path = templates/gentoo
 	url = git://github.com/vtolstov/packer-gentoo.git
@@ -38,6 +42,10 @@
 	path = templates/clodo
 	url = ssh://git@stash.clodo.ru/cl15/packer-clodo.git
 	branch = master
+[submodule "templates/mighost"]
+  path = templates/mighost
+  url = git@github.com:vtolstov/packer-mighost.git
+  branch = master
 [submodule "templates/clodo2"]
 	path = templates/clodo2
 	url = ssh://git@stash.clodo.ru/clodo/packer-clodo2.git
