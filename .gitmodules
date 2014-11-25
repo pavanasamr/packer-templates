@@ -34,10 +34,6 @@
 	path = templates/ubuntu
 	url = git://github.com/vtolstov/packer-ubuntu.git
 	branch = master
-[submodule "templates/mighost"]
-	path = templates/mighost
-	url = git@github.com:vtolstov/packer-mighost.git
-	branch = master
 [submodule "templates/clodo"]
 	path = templates/clodo
 	url = ssh://git@stash.clodo.ru/cl15/packer-clodo.git
@@ -62,10 +58,6 @@
 	path = templates/openbsd
 	url = git://github.com/vtolstov/packer-openbsd.git
 	branch = master
-[submodule "templates/freepbx"]
-	path = templates/freepbx
-	url = git://github.com/vtolstov/packer-freepbx.git
-	branch = master
 [submodule "templates/wordpress"]
 	path = templates/wordpress
 	url = git://github.com/vtolstov/packer-wordpress.git
@@ -82,9 +74,9 @@
 	path = templates/drupal
 	url = git://github.com/vtolstov/packer-drupal.git
 	branch = master
-[submodule "templates/ajenty"]
-	path = templates/ajenty
-	url = git://github.com/vtolstov/packer-ajenty.git
+[submodule "templates/ajenti"]
+	path = templates/ajenti
+	url = git://github.com/vtolstov/packer-ajenti.git
 	branch = master
 [submodule "templates/lamp"]
 	path = templates/lamp
