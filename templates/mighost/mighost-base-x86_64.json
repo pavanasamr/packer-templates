@@ -1,0 +1,80 @@
+{
+  "builders": [
+    {
+      "accelerator": "kvm",
+      "boot_command": [
+        "<down><down><down><down><down><down><down><down><down><down><down><enter>",
+        "<enter>",
+        "<wait10>",
+        "<enter>",
+        "<wait10>",
+        "<enter>",
+        "<wait10>",
+        "<enter>",
+        "killall -9 sshd<enter><wait>",
+        "wget http://{{ .HTTPIP }}:{{ .HTTPPort }}/install.sh -O /tmp/install.sh ; chmod +x /tmp/install.sh ; /tmp/install.sh<enter>"
+      ],
+      "boot_wait": "5s",
+      "disk_interface": "scsi",
+      "disk_size": 5000,
+      "disk_cache": "unsafe",
+      "format": "raw",
+      "headless": true,
+      "http_directory": "http",
+      "iso_checksum": "6e66fa98c4dec03be5c59fd203b0622ac8d8b7c2",
+      "iso_checksum_type": "sha1",
+      "iso_url": "http://sourceforge.net/projects/systemrescuecd/files/sysresccd-x86/4.2.0/systemrescuecd-x86-4.2.0.iso/download",
+      "net_device": "virtio-net",
+      "output_directory": "output/mighost-base-x86_64-qemu/",
+      "machine_type": "pc-i440fx-1.7",
+      "qemuargs": [
+        [
+          "-m",
+          "512"
+        ],
+        [
+          "-device",
+          "virtio-scsi-pci,id=scsi0"
+        ],
+        [
+          "-drive",
+          "if=none,cache=unsafe,id=drive0,discard=unmap,file=output/mighost-base-x86_64-qemu/mighost-base-x86_64.raw"
+        ],
+        [
+          "-device",
+          "scsi-hd,bus=scsi0.0,drive=drive0"
+        ],
+        [
+          "-device",
+          "virtio-net,netdev=user.0"
+        ],
+        [
+          "-device",
+          "virtio-net,netdev=user.1"
+        ]
+      ],
+      "shutdown_command": "systemctl poweroff",
+      "ssh_password": "packer",
+      "ssh_username": "root",
+      "ssh_wait_timeout": "10000s",
+      "type": "qemu",
+      "vm_name": "mighost-base-x86_64"
+    }
+  ],
+  "provisioners": [
+    {
+      "scripts": [
+        "scripts/base.sh",
+        "scripts/reboot.sh"
+      ],
+      "type": "shell"
+    },
+    {
+      "scripts": [
+        "scripts/cleanup.sh"
+      ],
+      "pause_before": "30s",
+      "type": "shell"
+    }
+  ]
+}

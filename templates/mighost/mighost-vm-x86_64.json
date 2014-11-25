@@ -1,0 +1,90 @@
+{
+  "builders": [
+    {
+      "accelerator": "kvm",
+      "boot_command": [],
+      "boot_wait": "5s",
+      "disk_interface": "scsi",
+      "disk_size": 5000,
+      "disk_image": true,
+      "disk_cache": "unsafe",
+      "format": "raw",
+      "headless": true,
+      "http_directory": "http",
+      "iso_checksum_type": "none",
+      "iso_url": "output/mighost-base-x86_64-qemu/mighost-base-x86_64.raw",
+      "net_device": "virtio-net",
+      "output_directory": "output/mighost-vm-x86_64-qemu/",
+      "machine_type": "pc-i440fx-1.7",
+      "qemuargs": [
+        [
+          "-m",
+          "512"
+        ],
+        [
+          "-device",
+          "virtio-scsi-pci,id=scsi0"
+        ],
+        [
+          "-drive",
+          "if=none,cache=unsafe,id=drive0,discard=unmap,file=output/mighost-vm-x86_64-qemu/mighost-vm-x86_64.raw"
+        ],
+        [
+          "-device",
+          "scsi-hd,bus=scsi0.0,drive=drive0"
+        ],
+        [
+          "-device",
+          "virtio-net,netdev=user.0"
+        ],
+        [
+          "-device",
+          "virtio-net,netdev=user.1"
+        ]
+      ],
+      "shutdown_command": "systemctl poweroff",
+      "ssh_password": "packer",
+      "ssh_username": "root",
+      "ssh_wait_timeout": "10000s",
+      "type": "qemu",
+      "vm_name": "mighost-vm-x86_64"
+    }
+  ],
+  "provisioners": [
+    {
+      "inline": [
+        "rm -f /etc/machine-id",
+        "systemd-machine-id-setup",
+        "systemctl restart systemd-journald.service",
+        "hostnamectl --no-ask-password --static set-hostname vm00.00.mighost.ru"
+      ],
+      "type": "shell"
+    },
+    {
+      "execute_command": "{{if .Sudo}}sudo {{end}}chef-solo --no-color --force-logger -l debug -c http://bb.selfip.ru/chef/vm00.00.mighost.ru.rb || sleep 600m",
+      "install_command": "cave -L silent resolve -x1 omnibus-chef",
+      "prevent_sudo": "true",
+      "skip_install": "false",
+      "type": "chef-solo"
+    },
+    {
+      "scripts": [
+        "scripts/cleanup.sh"
+      ],
+      "type": "shell"
+    }
+  ],
+  "post-processors": [
+    [
+      {
+        "type": "squashfs",
+        "format": "gzip",
+        "include": [
+          "/boot/vmlinuz*",
+          "/boot/init*"
+        ],
+        "output": "output/mighost-vm-x86_64-squashfs/"
+      }
+    ]
+  ]
+}
