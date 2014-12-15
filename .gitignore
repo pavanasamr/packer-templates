@@ -1,4 +1,4 @@
-bin/
-tmp/
-images/
-templates/*/
+bin/**
+tmp/**
+images/**
+templates/*/**
