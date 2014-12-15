@@ -94,3 +94,7 @@
 	path = templates/django
 	url = git://github.com/vtolstov/packer-django.git
 	branch = master
+[submodule "templates/gitlab"]
+  path = templates/gitlab
+  url = git://github.com/vtolstov/packer-gitlab.git
+  branch = master
