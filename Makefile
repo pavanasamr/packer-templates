@@ -81,12 +81,12 @@ tools:
 	@mkdir -p $(PWD)/tmp
 	@echo Install packer
 	@rm -rf $(PWD)/bin/*
-	@wget -c -q https://dl.bintray.com/mitchellh/packer/packer_0.7.5_linux_amd64.zip -O $(PWD)/bin/packer.zip
-	@unzip -q -o -d $(PWD)/bin/ $(PWD)/bin/packer.zip
+	wget -c -q https://dl.bintray.com/mitchellh/packer/packer_0.7.5_linux_amd64.zip -O $(PWD)/bin/packer.zip
+	unzip -q -o -d $(PWD)/bin/ $(PWD)/bin/packer.zip
 	@rm -f $(PWD)/bin/packer.zip
 	@echo Install plugins
-	@GOPATH=$(PWD)/tmp GOBIN=$(PWD)/bin/ go get -u github.com/vtolstov/packer-post-processor-squashfs
-	@GOPATH=$(PWD)/tmp GOBIN=$(PWD)/bin/ go get -u github.com/vtolstov/packer-post-processor-compress
+	GOPATH=$(PWD)/tmp GOBIN=$(PWD)/bin/ go get -u github.com/vtolstov/packer-post-processor-squashfs
+	GOPATH=$(PWD)/tmp GOBIN=$(PWD)/bin/ go get -u github.com/vtolstov/packer-post-processor-compress
 
 source:
 	@GOPATH=$(PWD)/tmp GOBIN=$(PWD)/bin/ go get -u github.com/mitchellh/gox
