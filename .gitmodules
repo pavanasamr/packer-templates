@@ -44,7 +44,7 @@
 	branch = master
 [submodule "templates/mighost"]
   path = templates/mighost
-  url = git@github.com:vtolstov/packer-mighost.git
+  url = git@bitbucket.org:vtolstov/packer-mighost.git
   branch = master
 [submodule "templates/clodo2"]
 	path = templates/clodo2
@@ -60,7 +60,7 @@
 	branch = master
 [submodule "templates/altlinuxspt"]
 	path = templates/altlinuxspt
-	url = git@github.com:vtolstov/packer-altlinuxspt.git
+	url = git@bitbucket.org:vtolstov/packer-altlinuxspt.git
 	branch = master
 [submodule "templates/openbsd"]
 	path = templates/openbsd
