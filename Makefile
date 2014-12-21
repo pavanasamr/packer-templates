@@ -1,6 +1,6 @@
 SHELL := /bin/bash
 PWD := $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
-PATH := $(PWD)/bin:$(PATH)
+PATH := $(PWD)/bin:$(PATH):/sbin:/bin:/usr/sbin:/usr/bin
 DESTDIR ?= $(PWD)/images/
 
 .PHONY : clean update install list
