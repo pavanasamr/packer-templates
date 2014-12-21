@@ -39,6 +39,31 @@ build:
 	done
 	$(MAKE) -C $(PWD)/templates/$(OS) build $(TPL)
 
+pull:
+	$(eval TPL := $(filter-out $@,$(MAKECMDGOALS)))
+	$(eval MAKECMDGOALS := $(TPL))
+	$(eval OS := $(TPL))
+	@git config -f .gitmodules --get-regexp '^submodule\..*\.path$$' | sort | cut -d " " -f2 | while read module; \
+	do \
+		if [ "x$${module}" != "xtemplates/$(OS)" ]; then \
+			continue ;\
+		fi ;\
+		url=$$(git config -f .gitmodules --get submodule.$${module}.url); \
+		branch=$$(git config -f .gitmodules --get submodule.$${module}.branch); \
+		path=$$(git config -f .gitmodules --get submodule.$${module}.path); \
+		if [ ! -d $${path} ]; then \
+			echo "try to add submodule $${path}" ;\
+			git submodule --quiet add --force -b $${branch} $${url} $${path} ;\
+		fi ;\
+		git add -f $${path};\
+		echo "try to update submodule $${path}" ;\
+		git submodule update --remote --rebase --init -- $${path} ;\
+		pushd $${path} >/dev/null;\
+		echo "checkout submodule $${path} branch $${branch}" ;\
+		git checkout -q $${branch} || echo "submodule fail $${url} $${path} $${branch}";\
+		popd >/dev/null;\
+	done
+
 %:
 	@:
 
