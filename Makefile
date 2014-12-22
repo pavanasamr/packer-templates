@@ -31,7 +31,7 @@ build:
 		fi ;\
 		git add -f $${path};\
 		echo "try to update submodule $${path}" ;\
-		git submodule update --rebase --init -- $${path} ;\
+		git submodule update --remote --rebase --init -- $${path} ;\
 		pushd $${path} >/dev/null;\
 		echo "checkout submodule $${path} branch $${branch}" ;\
 		git checkout -q $${branch} || echo "submodule fail $${url} $${path} $${branch}";\
@@ -57,7 +57,7 @@ pull:
 		fi ;\
 		git add -f $${path};\
 		echo "try to update submodule $${path}" ;\
-		git submodule update --rebase --init -- $${path} ;\
+		git submodule update --remote --rebase --init -- $${path} ;\
 		pushd $${path} >/dev/null;\
 		echo "checkout submodule $${path} branch $${branch}" ;\
 		git checkout -q $${branch} || echo "submodule fail $${url} $${path} $${branch}";\
