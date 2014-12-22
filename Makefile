@@ -103,7 +103,7 @@ tools:
 	@mkdir -p $(PWD)/tmp $(PWD)/bin
 	@echo Install packer
 	@rm -rf $(PWD)/bin/*
-	wget -c https://dl.bintray.com/mitchellh/packer/packer_0.7.5_linux_amd64.zip -O $(PWD)/bin/packer.zip || wget -c https://dl.bintray.com/mitchellh/packer/packer_0.7.5_linux_amd64.zip -O $(PWD)/bin/packer.zipx
+	wget -c https://dl.bintray.com/mitchellh/packer/packer_0.7.5_linux_amd64.zip -O $(PWD)/bin/packer.zip || wget -c https://dl.bintray.com/mitchellh/packer/packer_0.7.5_linux_amd64.zip -O $(PWD)/bin/packer.zip
 	unzip -q -o -d $(PWD)/bin/ $(PWD)/bin/packer.zip
 	@rm -f $(PWD)/bin/packer.zip
 	@echo Install plugins
