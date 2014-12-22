@@ -11,7 +11,7 @@ install:
 	$(eval TPL := $(filter-out $@,$(MAKECMDGOALS)))
 	$(eval MAKECMDGOALS := $(TPL))
 	$(eval OS := $(firstword $(subst -, , $(TPL))))
-	$(MAKE) -C $(PWD)/templates/$(OS) install $(TPL)
+	$(MAKE) -C $(PWD)/templates/$(OS) install $(TPL) DESTDIR=$(DESTDIR)
 
 build:
 	$(eval TPL := $(filter-out $@,$(MAKECMDGOALS)))
