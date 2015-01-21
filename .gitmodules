@@ -43,9 +43,9 @@
 	url = ssh://git@stash.clodo.ru/cl15/packer-clodo.git
 	branch = master
 [submodule "templates/mighost"]
-  path = templates/mighost
-  url = git@bitbucket.org:vtolstov/packer-mighost.git
-  branch = master
+	path = templates/mighost
+	url = git@bitbucket.org:vtolstov/packer-mighost.git
+	branch = master
 [submodule "templates/clodo2"]
 	path = templates/clodo2
 	url = ssh://git@stash.clodo.ru/clodo/packer-clodo2.git
