@@ -17,51 +17,31 @@ build:
 	$(eval TPL := $(filter-out $@,$(MAKECMDGOALS)))
 	$(eval MAKECMDGOALS := $(TPL))
 	$(eval OS := $(firstword $(subst -, , $(TPL))))
-	@git config -f .gitmodules --get-regexp '^submodule\..*\.path$$' | sort | cut -d " " -f2 | while read module; \
-	do \
-		if [ "x$${module}" != "xtemplates/$(OS)" ]; then \
-			continue ;\
-		fi ;\
-		url=$$(git config -f .gitmodules --get submodule.$${module}.url); \
-		branch=$$(git config -f .gitmodules --get submodule.$${module}.branch); \
-		path=$$(git config -f .gitmodules --get submodule.$${module}.path); \
-		if [ ! -d $${path} ]; then \
-			echo "try to add submodule $${path}" ;\
-			git submodule --quiet add --force -b $${branch} $${url} $${path} ;\
-		fi ;\
-		git add -f $${path};\
-		echo "try to update submodule $${path}" ;\
-		git submodule update --remote --rebase --init -- $${path} ;\
-		pushd $${path} >/dev/null;\
-		echo "checkout submodule $${path} branch $${branch}" ;\
-		git checkout -q $${branch} || echo "submodule fail $${url} $${path} $${branch}";\
-		popd >/dev/null;\
-	done
+	$(MAKE) --quiet pull $(OS)
 	$(MAKE) -C $(PWD)/templates/$(OS) build $(TPL)
 
 pull:
 	$(eval TPL := $(filter-out $@,$(MAKECMDGOALS)))
 	$(eval MAKECMDGOALS := $(TPL))
 	$(eval OS := $(TPL))
-	@git config -f .gitmodules --get-regexp '^submodule\..*\.path$$' | sort | cut -d " " -f2 | while read module; \
+	@git config -f .modules --get-regexp '^module\..*\.path$$' | sort | cut -d "/" -f2 | while read module; \
 	do \
-		if [ "x$${module}" != "xtemplates/$(OS)" ]; then \
+		if [ "x$${module}" != "x$(OS)" ]; then \
 			continue ;\
 		fi ;\
-		url=$$(git config -f .gitmodules --get submodule.$${module}.url); \
-		branch=$$(git config -f .gitmodules --get submodule.$${module}.branch); \
-		path=$$(git config -f .gitmodules --get submodule.$${module}.path); \
-		if [ ! -d $${path} ]; then \
-			echo "try to add submodule $${path}" ;\
-			git submodule --quiet add --force -b $${branch} $${url} $${path} ;\
+		url=$$(git config -f .modules --get module.$${module}.url); \
+		branch=$$(git config -f .modules --get module.$${module}.branch); \
+		path=$$(git config -f .modules --get module.$${module}.path); \
+		if [ ! -d $(PWD)/$${path} ]; then \
+			echo "try to add module $${path}" ;\
+			git clone --quiet $${url} $(PWD)/$${path} || echo "git clone $${url} $(PWD)/$${path}"; exit 1 ;\
+			git --git-dir=$(PWD)/$${path}/.git --work-tree=$(PWD)/$${path} checkout --quiet -b $${branch} origin/$${branch} || echo "git checkout -b $${branch} origin/$${branch}"; exit 1 ;\
 		fi ;\
-		git add -f $${path};\
-		echo "try to update submodule $${path}" ;\
-		git submodule update --remote --rebase --init -- $${path} ;\
-		pushd $${path} >/dev/null;\
-		echo "checkout submodule $${path} branch $${branch}" ;\
-		git checkout -q $${branch} || echo "submodule fail $${url} $${path} $${branch}";\
-		popd >/dev/null;\
+		if [ -d $(PWD)/$${path} ]; then \
+			echo "try to update module $${path}" ;\
+			git --git-dir=$(PWD)/$${path}/.git --work-tree=$(PWD)/$${path} branch | grep -q ^$${branch} || git --git-dir=$(PWD)/$${path}/.git --work-tree=$(PWD)/$${path} checkout --quiet $${branch} ;\
+			git --git-dir=$(PWD)/$${path}/.git --work-tree=$(PWD)/$${path} pull --quiet --rebase ;\
+		fi ;\
 	done
 
 %:
@@ -69,30 +49,16 @@ pull:
 
 
 list:
-	@git config -f .gitmodules --get-regexp '^submodule\..*\.path$$' | sort | cut -d " " -f2 | cut -d "/" -f2 | while read module; \
+	@git config -f .modules --get-regexp '^module\..*\.path$$' | sort | cut -d "/" -f2 | while read module; \
 	do \
 	echo "$${module}" ;\
 	done
 
 update:
 	@echo Updating modules
-	@git submodule init
-	@git config -f .gitmodules --get-regexp '^submodule\..*\.path$$' | sort | cut -d " " -f2 | while read module; \
+	@git config -f .modules --get-regexp '^module\..*\.path$$' | sort | cut -d "/" -f2 | while read module; \
 	do \
-		url=$$(git config -f .gitmodules --get submodule.$${module}.url); \
-		branch=$$(git config -f .gitmodules --get submodule.$${module}.branch); \
-		path=$$(git config -f .gitmodules --get submodule.$${module}.path); \
-		if [ ! -d $${path} ]; then \
-			git submodule --quiet add --force -b $${branch} $${url} $${path} 2>/dev/null >/dev/null || echo "submodule add fail $${url} $${path} $${branch}"; \
-		fi ;\
-		git add -f $${path};\
-		git submodule update --init --rebase -- $${path} 2>/dev/null >/dev/null || echo "submodule update fail $${url} $${path} $${branch}";\
-		if [ -d $${path} ]; then \
-			pushd $${path} >/dev/null;\
-			git checkout -q $${branch} 2>/dev/null >/dev/null || echo "submodule fail $${url} $${path} $${branch}";\
-			popd >/dev/null;\
-		fi ;\
-		echo "update $${path}" ;\
+		$(MAKE) --quiet pull $${module} ;\
 	done
 
 clean:

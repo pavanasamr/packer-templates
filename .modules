@@ -1,100 +1,100 @@
-[submodule "templates/exherbo"]
+[module "exherbo"]
 	path = templates/exherbo
 	url = git://github.com/vtolstov/packer-exherbo.git
 	branch = master
-[submodule "templates/archlinux"]
+[module "archlinux"]
 	path = templates/archlinux
 	url = git://github.com/vtolstov/packer-archlinux.git
 	branch = master
-[submodule "templates/centos"]
+[module "centos"]
 	path = templates/centos
 	url = git://github.com/vtolstov/packer-centos.git
 	branch = master
-[submodule "templates/debian"]
+[module "debian"]
 	path = templates/debian
 	url = git://github.com/vtolstov/packer-debian.git
 	branch = master
-[submodule "templates/fedora"]
+[module "fedora"]
 	path = templates/fedora
 	url = git://github.com/vtolstov/packer-fedora.git
 	branch = master
-[submodule "templates/freebsd"]
+[module "freebsd"]
 	path = templates/freebsd
 	url = git://github.com/vtolstov/packer-freebsd.git
 	branch = master
-[submodule "templates/freepbx"]
+[module "freepbx"]
   path = templates/freepbx
   url = git://github.com/vtolstov/packer-freepbx.git
   branch = master
-[submodule "templates/gentoo"]
+[module "gentoo"]
 	path = templates/gentoo
 	url = git://github.com/vtolstov/packer-gentoo.git
 	branch = master
-[submodule "templates/opensuse"]
+[module "opensuse"]
 	path = templates/opensuse
 	url = git://github.com/vtolstov/packer-opensuse.git
 	branch = master
-[submodule "templates/ubuntu"]
+[module "ubuntu"]
 	path = templates/ubuntu
 	url = git://github.com/vtolstov/packer-ubuntu.git
 	branch = master
-[submodule "templates/clodo"]
+[module "clodo"]
 	path = templates/clodo
 	url = ssh://git@stash.clodo.ru/cl15/packer-clodo.git
 	branch = master
-[submodule "templates/mighost"]
+[module "mighost"]
 	path = templates/mighost
 	url = git@bitbucket.org:vtolstov/packer-mighost.git
 	branch = master
-[submodule "templates/clodo2"]
+[module "clodo2"]
 	path = templates/clodo2
 	url = ssh://git@stash.clodo.ru/clodo/packer-clodo2.git
 	branch = master
-[submodule "templates/coreos"]
+[module "coreos"]
 	path = templates/coreos
 	url = git://github.com/vtolstov/packer-coreos.git
 	branch = master
-[submodule "templates/altlinux"]
+[module "altlinux"]
 	path = templates/altlinux
 	url = git://github.com/vtolstov/packer-altlinux.git
 	branch = master
-[submodule "templates/altlinuxspt"]
+[module "altlinuxspt"]
 	path = templates/altlinuxspt
-	url = git@bitbucket.org:vtolstov/packer-altlinuxspt.git
+  url = git@bitbucket.org:vtolstov/packer-altlinuxspt.git
 	branch = master
-[submodule "templates/openbsd"]
+[module "openbsd"]
 	path = templates/openbsd
 	url = git://github.com/vtolstov/packer-openbsd.git
 	branch = master
-[submodule "templates/wordpress"]
+[module "wordpress"]
 	path = templates/wordpress
 	url = git://github.com/vtolstov/packer-wordpress.git
 	branch = master
-[submodule "templates/joomla"]
+[module "joomla"]
 	path = templates/joomla
 	url = git://github.com/vtolstov/packer-joomla.git
 	branch = master
-[submodule "templates/bitrixenv"]
+[module "bitrixenv"]
 	path = templates/bitrixenv
 	url = git://github.com/vtolstov/packer-bitrixenv.git
 	branch = master
-[submodule "templates/drupal"]
+[module "drupal"]
 	path = templates/drupal
 	url = git://github.com/vtolstov/packer-drupal.git
 	branch = master
-[submodule "templates/ajenti"]
+[module "ajenti"]
 	path = templates/ajenti
 	url = git://github.com/vtolstov/packer-ajenti.git
 	branch = master
-[submodule "templates/lamp"]
+[module "lamp"]
 	path = templates/lamp
 	url = git://github.com/vtolstov/packer-lamp.git
 	branch = master
-[submodule "templates/django"]
+[module "django"]
 	path = templates/django
 	url = git://github.com/vtolstov/packer-django.git
 	branch = master
-[submodule "templates/gitlab"]
+[module "gitlab"]
   path = templates/gitlab
   url = git://github.com/vtolstov/packer-gitlab.git
   branch = master
