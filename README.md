@@ -7,7 +7,7 @@ Clone:
 
 Prepare:
 
-* make source
+* make tools
 * make update
 
 Build:
@@ -20,10 +20,10 @@ Install:
 
 Dependencies:
 
-* libguestfs (for packer-postprocessor-strip)
-* squashfs-tools (for packer-postprocessor-strip)
-* fuse (for packer-postprocessor-strip)
-* golang (needs to be in source target)
-* mercurial (for source target)
+* libguestfs (for packer-postprocessor-squashfs)
+* squashfs-tools (for packer-postprocessor-squashfs)
+* fuse (for packer-postprocessor-squashfs)
+* golang (1.4)
+* jq
 * qemu
 
