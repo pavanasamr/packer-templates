@@ -2,8 +2,9 @@ SHELL := /bin/bash
 PWD := $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
 PATH := $(PWD)/bin:$(PATH):/sbin:/bin:/usr/sbin:/usr/bin
 DESTDIR ?= $(PWD)/images/
+MODULES ?= $(shell git config -f $(PWD)/.modules --get-regexp '^module\..*\.path$$' | sort | cut -d "/" -f2 | uniq)
 
-.PHONY : clean update install list
+.PHONY : clean update install list pull push commit
 
 all: tools build
 
@@ -24,7 +25,7 @@ pull:
 	$(eval TPL := $(filter-out $@,$(MAKECMDGOALS)))
 	$(eval MAKECMDGOALS := $(TPL))
 	$(eval OS := $(TPL))
-	@git config -f .modules --get-regexp '^module\..*\.path$$' | sort | cut -d "/" -f2 | while read module; \
+	@for module in $(MODULES); \
 	do \
 		if [ "x$${module}" != "x$(OS)" ]; then \
 			continue ;\
@@ -44,21 +45,48 @@ pull:
 		fi ;\
 	done
 
+push:
+	$(eval TPL := $(filter-out $@,$(MAKECMDGOALS)))
+	$(eval MAKECMDGOALS := $(TPL))
+	$(eval OS := $(TPL))
+	@for module in $(MODULES); \
+	do \
+		if [ "x$${module}" != "x$(OS)" ]; then \
+			continue ;\
+		fi ;\
+		url=$$(git config -f .modules --get module.$${module}.url); \
+		branch=$$(git config -f .modules --get module.$${module}.branch); \
+		path=$$(git config -f .modules --get module.$${module}.path); \
+		if [ -d $(PWD)/$${path} ]; then \
+      echo "try to update module $${path}" ;\
+      git --git-dir=$(PWD)/$${path}/.git --work-tree=$(PWD)/$${path} commit -a -s -m 'update' ;\
+      git --git-dir=$(PWD)/$${path}/.git --work-tree=$(PWD)/$${path} push --quiet ;\
+    fi ;\
+  done
+
+
 %:
 	@:
 
 
 list:
-	@git config -f .modules --get-regexp '^module\..*\.path$$' | sort | cut -d "/" -f2 | while read module; \
+	@for module in $(MODULES); \
 	do \
-	echo "$${module}" ;\
+		echo "$${module}" ;\
 	done
 
 update:
 	@echo Updating modules
-	@git config -f .modules --get-regexp '^module\..*\.path$$' | sort | cut -d "/" -f2 | while read module; \
+	@for module in $(MODULES); \
 	do \
 		$(MAKE) --quiet pull $${module} ;\
+	done
+
+commit:
+	@echo Commit changes
+	@for module in $(MODULES); \
+	do \
+		$(MAKE) --quiet push $${module} ;\
 	done
 
 clean:
