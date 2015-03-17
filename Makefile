@@ -42,10 +42,9 @@ pull:
 		if [ -d $(PWD)/$${path} ]; then \
 			echo "try to update module $${path}" ;\
 			git --git-dir=$(PWD)/$${path}/.git --work-tree=$(PWD)/$${path} branch | grep -q ^$${branch} || git --git-dir=$(PWD)/$${path}/.git --work-tree=$(PWD)/$${path} checkout --quiet $${branch} ;\
+			git --git-dir=$(PWD)/$${path}/.git --work-tree=$(PWD)/$${path} pull --quiet --rebase ;\
 			if [ "x$${revision}" != "x" ]; then \
 				git --git-dir=$(PWD)/$${path}/.git --work-tree=$(PWD)/$${path} reset --hard $${revision} ;\
-			else \
-				git --git-dir=$(PWD)/$${path}/.git --work-tree=$(PWD)/$${path} pull --quiet --rebase ;\
 			fi ;\
 		fi ;\
 	done
