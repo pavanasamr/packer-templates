@@ -4,7 +4,7 @@ PATH := $(PWD)/bin:$(PATH):/sbin:/bin:/usr/sbin:/usr/bin
 DESTDIR ?= $(PWD)/images/
 MODULES ?= $(shell git config -f $(PWD)/.modules --get-regexp '^module\..*\.path$$' | sort | cut -d "/" -f2 | uniq)
 
-.PHONY : clean update install list pull push commit
+.PHONY : clean update install list pull push commit modules
 
 all: tools build
 
@@ -33,6 +33,7 @@ pull:
 		url=$$(git config -f .modules --get module.$${module}.url); \
 		branch=$$(git config -f .modules --get module.$${module}.branch); \
 		path=$$(git config -f .modules --get module.$${module}.path); \
+		revision=$$(git config -f .modules --get module.$${module}.revision); \
 		if [ ! -d $(PWD)/$${path} ]; then \
 			echo "try to add module $${path}" ;\
 			git clone --quiet $${url} $(PWD)/$${path} || echo "git clone $${url} $(PWD)/$${path}"; exit 1 ;\
@@ -41,7 +42,23 @@ pull:
 		if [ -d $(PWD)/$${path} ]; then \
 			echo "try to update module $${path}" ;\
 			git --git-dir=$(PWD)/$${path}/.git --work-tree=$(PWD)/$${path} branch | grep -q ^$${branch} || git --git-dir=$(PWD)/$${path}/.git --work-tree=$(PWD)/$${path} checkout --quiet $${branch} ;\
-			git --git-dir=$(PWD)/$${path}/.git --work-tree=$(PWD)/$${path} pull --quiet --rebase ;\
+			if [ "x$${revision}" != "x" ]; then \
+				git --git-dir=$(PWD)/$${path}/.git --work-tree=$(PWD)/$${path} reset --hard $${revision} ;\
+			else \
+				git --git-dir=$(PWD)/$${path}/.git --work-tree=$(PWD)/$${path} pull --quiet --rebase ;\
+			fi ;\
+		fi ;\
+	done
+
+modules:
+	@for module in $(MODULES); \
+	do \
+		url=$$(git config -f .modules --get module.$${module}.url); \
+		branch=$$(git config -f .modules --get module.$${module}.branch); \
+		revision=$$(git ls-remote $${url} refs/heads/$${branch} | awk '{print $$1}'); \
+		if [ "x$${revision}" != "x" ]; then \
+			echo "update $${module} to $${revision}" ;\
+			git config -f .modules --replace-all module.$${module}.revision $${revision} ;\
 		fi ;\
 	done
 
