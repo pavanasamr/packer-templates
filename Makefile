@@ -3,8 +3,9 @@ PWD := $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
 PATH := $(PWD)/bin:$(PATH):/sbin:/bin:/usr/sbin:/usr/bin
 DESTDIR ?= $(PWD)/images/
 MODULES ?= $(shell git config -f $(PWD)/.modules --get-regexp '^module\..*\.path$$' | sort | cut -d "/" -f2 | uniq)
+GH_REPO_URL ?= $(shell echo $payload | jq -r '.repository.git_url' | uniq)
 
-.PHONY : clean update install list pull push commit modules
+.PHONY : clean update install list pull push commit modules hook
 
 all: tools build
 
@@ -46,6 +47,15 @@ pull:
 			if [ "x$${revision}" != "x" ]; then \
 				git --git-dir=$(PWD)/$${path}/.git --work-tree=$(PWD)/$${path} reset --hard $${revision} ;\
 			fi ;\
+		fi ;\
+	done
+
+githook:
+	@for module in $(MODULES); \
+	do \
+		url=$$(git config -f .modules --get module.$${module}.url); \
+		if [ "x$${url}" == "x$(GH_REPO_URL)" ]; then \
+			echo $${module} ;\
 		fi ;\
 	done
 
