@@ -3,9 +3,9 @@ PWD := $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
 PATH := $(PWD)/bin:$(PATH):/sbin:/bin:/usr/sbin:/usr/bin
 DESTDIR ?= $(PWD)/images/
 MODULES ?= $(shell git config -f $(PWD)/.modules --get-regexp '^module\..*\.path$$' | sort | cut -d "/" -f2 | uniq)
-GH_REPO_URL ?= $(shell echo $payload | jq -r '.repository.git_url' | uniq)
+JENKINS_URL ?=
 
-.PHONY : clean update install list pull push commit modules hook
+.PHONY : clean update install list pull push commit modules ci
 
 all: tools build
 
@@ -50,14 +50,21 @@ pull:
 		fi ;\
 	done
 
-githook:
-	@for module in $(MODULES); \
-	do \
-		url=$$(git config -f .modules --get module.$${module}.url); \
-		if [ "x$${url}" == "x$(GH_REPO_URL)" ]; then \
-			echo $${module} ;\
-		fi ;\
-	done
+ci:
+	@if [ "x$(JENKINS_URL)" != "x" ]; then \
+		for module in $(MODULES); \
+		do \
+			JOBS=$$(/usr/bin/jq -r '.builders[].vm_name' templates/$${module}/*.json) ;\
+			for JOB in $${JOBS}; do \
+				STATUS=$$(/usr/bin/curl --write-out "%{http_code}" -s -o /dev/null -L "$(JENKINS_URL)/job/packer-$${JOB}/build") ;\
+				if [ $${STATUS} -gt 302 ]; then \
+					echo "ci notify $${JOB} fail $${STATUS}" ;\
+				else \
+					echo "ci notify $${JOB} success $${STATUS}" ;\
+				fi ;\
+			done ;\
+		done ;\
+	fi
 
 modules:
 	@for module in $(MODULES); \
