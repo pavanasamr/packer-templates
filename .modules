@@ -2,12 +2,12 @@
 	path = templates/exherbo
 	url = git://github.com/vtolstov/packer-exherbo.git
 	branch = master
-	revision = 8ad56c6d028b588bbd450692d3c1aa061f4f1100
+	revision = e194eba1946d49af978177f559c5355e6877a6b5
 [module "archlinux"]
 	path = templates/archlinux
 	url = git://github.com/vtolstov/packer-archlinux.git
 	branch = master
-	revision = e9df036f4115eb938633e85755b7759eb8e87747
+	revision = 16db8bb89a6de091bf3fcf7fddedede41471516c
 [module "centos"]
 	path = templates/centos
 	url = git://github.com/vtolstov/packer-centos.git
