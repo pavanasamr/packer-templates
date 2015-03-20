@@ -62,7 +62,7 @@
 	path = templates/clodo2
 	url = ssh://git@stash.clodo.ru/clodo/packer-clodo2.git
 	branch = master
-	revision = 43d15076fdcb1ae17a219944f99ae3d149667e6b
+	revision = b9016d084858c5fd25bbab17818645b457f09d95
 [module "coreos"]
 	path = templates/coreos
 	url = git://github.com/vtolstov/packer-coreos.git
