@@ -27,7 +27,7 @@
 	path = templates/freebsd
 	url = git://github.com/vtolstov/packer-freebsd.git
 	branch = master
-	revision = fa4da5da35dd3619a4fbc0e192ee357c0a3d2e0b
+	revision = 9bdceae6f7e1acfd5ebfde83a5cf1d4250a87db7
 [module "freepbx"]
 	path = templates/freepbx
 	url = git://github.com/vtolstov/packer-freepbx.git
@@ -52,7 +52,7 @@
 	path = templates/clodo
 	url = ssh://git@stash.clodo.ru/cl15/packer-clodo.git
 	branch = master
-	revision = 9be87253f571a438487e9419566bdd9da3964dde
+	revision = 994639cf7a256f23f70ba04923dc90dd3406dc24
 [module "mighost"]
 	path = templates/mighost
 	url = git@bitbucket.org:vtolstov/packer-mighost.git
