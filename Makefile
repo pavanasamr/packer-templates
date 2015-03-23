@@ -21,7 +21,7 @@ build:
 	$(eval MAKECMDGOALS := $(TPL))
 	$(eval OS := $(firstword $(subst -, , $(TPL))))
 	$(MAKE) --quiet pull $(OS)
-	$(MAKE) -C $(PWD)/templates/$(OS) build $(TPL)
+	$(MAKE) -C $(PWD)/templates/$(OS) build $(TPL) PROVISIONER=$(PROVISIONER)
 
 pull:
 	$(eval TPL := $(filter-out $@,$(MAKECMDGOALS)))
