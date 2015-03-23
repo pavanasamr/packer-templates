@@ -3,6 +3,7 @@ PWD := $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
 PATH := $(PWD)/bin:$(PATH):/sbin:/bin:/usr/sbin:/usr/bin
 DESTDIR ?= $(PWD)/images/
 MODULES ?= $(shell git config -f $(PWD)/.modules --get-regexp '^module\..*\.path$$' | sort | cut -d "/" -f2 | uniq)
+PROVISIONER ?= cloudinit
 JENKINS_URL ?=
 
 .PHONY : clean update install list pull push commit modules ci
