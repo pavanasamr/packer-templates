@@ -67,7 +67,7 @@
 	path = templates/coreos
 	url = git://github.com/vtolstov/packer-coreos.git
 	branch = master
-	revision = 74c3eec16ac41eeb9fe968ae4cbf68242661b99b
+	revision = d165e0bc904a6c901321c12bc64e85d1c5c1f157
 [module "altlinux"]
 	path = templates/altlinux
 	url = git://github.com/vtolstov/packer-altlinux.git
