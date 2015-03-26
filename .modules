@@ -7,7 +7,7 @@
 	path = templates/archlinux
 	url = git://github.com/vtolstov/packer-archlinux.git
 	branch = master
-	revision = 16db8bb89a6de091bf3fcf7fddedede41471516c
+	revision = 54910d272855678a375188304f5e6bf0f4b1f3bf
 [module "centos"]
 	path = templates/centos
 	url = git://github.com/vtolstov/packer-centos.git
