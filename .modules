@@ -7,12 +7,12 @@
 	path = templates/archlinux
 	url = git://github.com/vtolstov/packer-archlinux.git
 	branch = master
-	revision = 9dc49f818c0c0343d9b7efdc570ecb08d1159e88
+	revision = 6d3cbf4f17c5f3188f7fe263d315cae00a35a737
 [module "centos"]
 	path = templates/centos
 	url = git://github.com/vtolstov/packer-centos.git
 	branch = master
-	revision = fdbc934887cbef29eae730e34a9687cc713493cf
+	revision = a18378248d9b378bc5fcc084f908ef6a544bab63
 [module "debian"]
 	path = templates/debian
 	url = git://github.com/vtolstov/packer-debian.git
