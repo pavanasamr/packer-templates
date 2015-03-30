@@ -46,7 +46,7 @@ systemctl enable cloudinit.service
 
 install_cloudinit() {
     grep -q Arch /etc/issue && install_systemd
-    grep -q "/etc/os-release" /etc/os-release && install_systemd
+    grep -q "CentOS Linux 7" /etc/os-release && install_systemd
 }
 
 
