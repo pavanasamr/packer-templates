@@ -19,10 +19,13 @@ case "$(uname)" in
     "FreeBSD")
         URL="${URL}-freebsd-${ARCH}"
         ;;
+    "OpenBSD")
+        URL="${URL}-openbsd-${ARCH}"
+        ;;
 esac
 
 
-install_archlinux() {
+install_systemd() {
 cat <<EOF > /etc/systemd/system/cloudinit.service
 [Unit]
 Description=cloudinit
@@ -30,7 +33,7 @@ After=network.target
 
 [Service]
 Type=oneshot
-ExecStart=/usr/bin/cloudinit -from-openstack-metadata="http://169.254.269.254/"
+ExecStart=/usr/bin/cloudinit -from-openstack-metadata="http://169.254.169.254/"
 ExecStartPost=/usr/bin/systemctl disable cloudinit.service
 ExecStartPost=/usr/bin/rm -f /usr/bin/cloudinit /etc/systemd/system/cloudinit.service
 RemainAfterExit=no
@@ -42,7 +45,8 @@ systemctl enable cloudinit.service
 }
 
 install_cloudinit() {
-    grep -q Arch /etc/issue && install_archlinux
+    grep -q Arch /etc/issue && install_systemd
+    grep -q "/etc/os-release" /etc/os-release && install_systemd
 }
 
 
