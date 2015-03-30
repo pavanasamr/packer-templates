@@ -34,9 +34,7 @@ After=network.target
 [Service]
 Type=oneshot
 ExecStart=/usr/bin/cloudinit -from-openstack-metadata="http://169.254.169.254/"
-ExecStartPost=/usr/bin/systemctl disable cloudinit.service
-ExecStartPost=/usr/bin/rm -f /usr/bin/cloudinit /etc/systemd/system/cloudinit.service
-RemainAfterExit=no
+RemainAfterExit=yes
 
 [Install]
 WantedBy=multi-user.target
