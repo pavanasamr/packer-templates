@@ -7,12 +7,12 @@
 	path = templates/archlinux
 	url = git://github.com/vtolstov/packer-archlinux.git
 	branch = master
-	revision = 9dc49f818c0c0343d9b7efdc570ecb08d1159e88
+	revision = 6d3cbf4f17c5f3188f7fe263d315cae00a35a737
 [module "centos"]
 	path = templates/centos
 	url = git://github.com/vtolstov/packer-centos.git
 	branch = master
-	revision = fdbc934887cbef29eae730e34a9687cc713493cf
+	revision = b18327d162c486ca3a1364b48efb1d29dc747e13
 [module "debian"]
 	path = templates/debian
 	url = git://github.com/vtolstov/packer-debian.git
@@ -77,7 +77,7 @@
 	path = templates/altlinuxspt
 	url = git@bitbucket.org:vtolstov/packer-altlinuxspt.git
 	branch = master
-	revision = 4db296f95f1e1318f2919f4ace417d4a4a050130
+	revision = 5058e34a418b9a381c59451ace09ae3554005ca4
 [module "openbsd"]
 	path = templates/openbsd
 	url = git://github.com/vtolstov/packer-openbsd.git
