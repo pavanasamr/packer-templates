@@ -29,7 +29,7 @@ pull:
 	$(eval OS := $(TPL))
 	@for module in $(MODULES); \
 	do \
-		if [ "x$${module}" != "x$(OS)" ]; then \
+		if [ "x$${module}" != "x$(OS)" -a "x$(OS)" != "x" ]; then \
 			continue ;\
 		fi ;\
 		url=$$(git config -f .modules --get module.$${module}.url); \
@@ -38,8 +38,8 @@ pull:
 		revision=$$(git config -f .modules --get module.$${module}.revision); \
 		if [ ! -d $(PWD)/$${path} ]; then \
 			echo "try to add module $${path}" ;\
-			git clone --quiet $${url} $(PWD)/$${path} || echo "git clone $${url} $(PWD)/$${path}"; exit 1 ;\
-			git --git-dir=$(PWD)/$${path}/.git --work-tree=$(PWD)/$${path} checkout --quiet -b $${branch} origin/$${branch} || echo "git checkout -b $${branch} origin/$${branch}"; exit 1 ;\
+			git clone --quiet $${url} $(PWD)/$${path} || ( if [ "x$(OS)" != "x" ]; then echo "git clone $${url} $(PWD)/$${path}"; exit 1; fi) ;\
+			git --git-dir=$(PWD)/$${path}/.git --work-tree=$(PWD)/$${path} checkout --quiet -b $${branch} origin/$${branch} || ( if [ "x$(OS)" != "x" ]; then echo "git checkout -b $${branch} origin/$${branch}"; exit 1; fi );\
 		fi ;\
 		if [ -d $(PWD)/$${path} ]; then \
 			echo "try to update module $${path}" ;\
