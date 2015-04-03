@@ -2,6 +2,7 @@
 
 URL="http://cdn.selfip.ru/public/cloudinit"
 ARCH=""
+SUDO="$(which sudo)"
 
 case "$(uname -m)" in
     "x86_64")
@@ -26,7 +27,7 @@ esac
 
 
 install_systemd() {
-cat <<EOF > /etc/systemd/system/cloudinit.service
+$SUDO cat <<EOF > /etc/systemd/system/cloudinit.service
 [Unit]
 Description=cloudinit
 After=network.target
@@ -39,7 +40,7 @@ RemainAfterExit=yes
 [Install]
 WantedBy=multi-user.target
 EOF
-systemctl enable cloudinit.service
+$SUDO systemctl enable cloudinit.service
 }
 
 install_cloudinit() {
@@ -48,7 +49,7 @@ install_cloudinit() {
 }
 
 
-curl --progress ${URL} > /usr/bin/cloudinit
-chmod +x /usr/bin/cloudinit
+$SUDO curl --progress ${URL} --output /usr/bin/cloudinit
+$SUDO chmod +x /usr/bin/cloudinit
 
 install_cloudinit
