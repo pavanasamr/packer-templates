@@ -27,7 +27,7 @@ esac
 
 
 install_systemd() {
-$SUDO cat <<EOF > /etc/systemd/system/cloudinit.service
+echo "
 [Unit]
 Description=cloudinit
 After=network.target
@@ -39,7 +39,7 @@ RemainAfterExit=yes
 
 [Install]
 WantedBy=multi-user.target
-EOF
+" | $SUDO tee /etc/systemd/system/cloudinit.service
 $SUDO systemctl enable cloudinit.service
 }
 
