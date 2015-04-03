@@ -53,3 +53,5 @@ $SUDO curl --progress ${URL} --output /usr/bin/cloudinit
 $SUDO chmod +x /usr/bin/cloudinit
 
 install_cloudinit
+
+exit 0;
