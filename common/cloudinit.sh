@@ -34,7 +34,7 @@ After=network.target
 
 [Service]
 Type=oneshot
-ExecStart=/usr/bin/cloudinit -from-openstack-metadata="http://169.254.169.254/"
+ExecStart=/usr/bin/cloudinit -from-openstack-metadata=http://169.254.169.254/
 RemainAfterExit=yes
 
 [Install]
