@@ -1,4 +1,4 @@
-#!/bin/sh -ex
+#!/bin/sh -x
 
 URL="http://cdn.selfip.ru/public/cloudinit"
 ARCH=""
