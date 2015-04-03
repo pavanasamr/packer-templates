@@ -47,7 +47,7 @@
 	path = templates/ubuntu
 	url = git://github.com/vtolstov/packer-ubuntu.git
 	branch = master
-	revision = 0ee0dcf735005700d5740a5ea8f4402fcc208dde
+	revision = 8559c40d5c8bf3918ceef33ec96a9e8b412f1d85
 [module "clodo"]
 	path = templates/clodo
 	url = ssh://git@stash.clodo.ru/cl15/packer-clodo.git
