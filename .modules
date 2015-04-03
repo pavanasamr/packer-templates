@@ -47,7 +47,7 @@
 	path = templates/ubuntu
 	url = git://github.com/vtolstov/packer-ubuntu.git
 	branch = master
-	revision = 70e38436467650da3f2ff92f40b05d154f8a8b3d
+	revision = 60bd0196b55eb58e8146c03267dfaf94845a6adc
 [module "clodo"]
 	path = templates/clodo
 	url = ssh://git@stash.clodo.ru/cl15/packer-clodo.git
@@ -77,7 +77,7 @@
 	path = templates/altlinuxspt
 	url = git@bitbucket.org:vtolstov/packer-altlinuxspt.git
 	branch = master
-	revision = 5058e34a418b9a381c59451ace09ae3554005ca4
+	revision = be2b1c736f576d459d42286eb29d5929bf9c1983
 [module "openbsd"]
 	path = templates/openbsd
 	url = git://github.com/vtolstov/packer-openbsd.git
