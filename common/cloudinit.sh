@@ -35,7 +35,8 @@ console output
 
 exec /usr/bin/cloudinit -from-openstack-metadata=http://169.254.169.254/
 " | $SUDO tee /etc/init/cloudinit.conf
-$SUDO 
+
+}
 
 install_systemd() {
 echo "
