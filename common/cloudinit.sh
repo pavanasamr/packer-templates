@@ -9,6 +9,8 @@ case "$(uname -m)" in
         ARCH="x86_64"
         ;;
     "i386")
+    "i586")
+    "i686")
         ARCH="x86_32"
         ;;
 esac
