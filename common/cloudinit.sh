@@ -1,17 +1,12 @@
 #!/bin/sh -x
 
 URL="http://cdn.selfip.ru/public/cloudinit"
-ARCH=""
+ARCH="x86_32"
 SUDO="$(which sudo)"
 
 case "$(uname -m)" in
     "x86_64")
         ARCH="x86_64"
-        ;;
-    "i386")
-    "i586")
-    "i686")
-        ARCH="x86_32"
         ;;
 esac
 
