@@ -31,7 +31,7 @@ echo "
 # cloudinit
 start on (local-filesystems and net-device-up IFACE!=lo)
 
-console output
+console log
 
 exec /usr/bin/cloudinit -from-openstack-metadata=http://169.254.169.254/
 " | $SUDO tee /etc/init/cloudinit.conf

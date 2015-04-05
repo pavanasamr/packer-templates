@@ -2,3 +2,4 @@ bin/**
 tmp/**
 images/**
 templates/*/**
+templates/*
