@@ -29,7 +29,7 @@ esac
 install_upstart() {
 echo "
 # cloudinit
-start on (mounted MOUNTPOINT=/) and (started networking)
+start on (local-filesystems and net-device-up IFACE!=lo)
 
 console output
 
