@@ -26,6 +26,17 @@ case "$(uname)" in
 esac
 
 
+install_upstart() {
+echo "
+# cloudinit
+start on (mounted MOUNTPOINT=/) and (started networking)
+
+console output
+
+exec /usr/bin/cloudinit -from-openstack-metadata=http://169.254.169.254/
+" | $SUDO tee /etc/init/cloudinit.conf
+$SUDO 
+
 install_systemd() {
 echo "
 [Unit]
@@ -46,6 +57,7 @@ $SUDO systemctl enable cloudinit.service
 install_cloudinit() {
     grep -q Arch /etc/issue && install_systemd
     grep -q "CentOS Linux 7" /etc/os-release && install_systemd
+    grep -q "Ubuntu 14.04" /etc/os-release && install_upstart
 }
 
 
