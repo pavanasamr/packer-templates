@@ -22,7 +22,7 @@
 	path = templates/fedora
 	url = git://github.com/vtolstov/packer-fedora.git
 	branch = master
-	revision = c5f0940b36970eee9e3620b335da16b026940417
+	revision = 1b86a6e7c69d53aa406ddbd66ae99d22b48d5236
 [module "freebsd"]
 	path = templates/freebsd
 	url = git://github.com/vtolstov/packer-freebsd.git
@@ -67,7 +67,7 @@
 	path = templates/coreos
 	url = git://github.com/vtolstov/packer-coreos.git
 	branch = master
-	revision = d165e0bc904a6c901321c12bc64e85d1c5c1f157
+	revision = 53455739720c2bdde877a50e4b04699ccfcb1632
 [module "altlinux"]
 	path = templates/altlinux
 	url = git://github.com/vtolstov/packer-altlinux.git
