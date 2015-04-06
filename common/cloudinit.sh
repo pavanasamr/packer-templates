@@ -59,7 +59,7 @@ start() {
 
         # Start daemons.
         echo -n $"Starting $prog: "
-        daemon $prog -from-openstack-metadata=http://169.254.169.254/
+        $prog -from-openstack-metadata=http://169.254.169.254/
         RETVAL=$?
         echo
         [ $RETVAL -eq 0 ] && touch $lockfile
