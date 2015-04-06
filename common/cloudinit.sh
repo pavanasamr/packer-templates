@@ -55,7 +55,7 @@ $SUDO systemctl enable cloudinit.service
 install_cloudinit() {
     grep -q Arch /etc/issue && install_systemd
     grep -q "CentOS Linux 7" /etc/os-release && install_systemd
-    grep -q "Ubuntu 14.04" /etc/os-release && install_upstart
+    grep -qE "Ubuntu 14.04|Ubuntu 14.10|Ubuntu precise|Precise Pangolin" /etc/os-release && install_upstart
 }
 
 
