@@ -23,7 +23,93 @@ case "$(uname)" in
 esac
 
 
-install_sysvinit() {
+install_centos() {
+echo '
+#!/bin/bash
+#
+# cloudinit     This shell script takes care of starting and stopping
+#               cloudinit.
+#
+# chkconfig: - 58 74
+# description: cloudinit is the cloudinit. \
+
+### BEGIN INIT INFO
+# Provides: cloudinit
+# Required-Start: $network $local_fs $remote_fs
+# Required-Stop: $network $local_fs $remote_fs
+# Should-Start: $syslog $named ntpdate
+# Should-Stop: $syslog $named
+# Short-Description: start and stop cloudinit
+# Description: cloudinit is the cloudinit
+### END INIT INFO
+
+# Source function library.
+. /etc/init.d/functions
+
+# Source networking configuration.
+. /etc/sysconfig/network
+
+prog=cloudinit
+lockfile=/var/lock/subsys/$prog
+
+start() {
+        [ "$EUID" != "0" ] && exit 4
+        [ "$NETWORKING" = "no" ] && exit 1
+        [ -x /usr/bin/cloudinit ] || exit 5
+
+        # Start daemons.
+        echo -n $"Starting $prog: "
+        daemon $prog $OPTIONS
+        RETVAL=$?
+        echo
+        [ $RETVAL -eq 0 ] && touch $lockfile
+        return $RETVAL
+}
+
+stop() {
+        [ "$EUID" != "0" ] && exit 4
+        echo -n $"Shutting down $prog: "
+        killproc $prog
+        RETVAL=$?
+        echo
+        [ $RETVAL -eq 0 ] && rm -f $lockfile
+        return $RETVAL
+}
+
+# See how we were called.
+case "$1" in
+  start)
+        start
+        ;;
+  stop) 
+        stop
+        ;;
+  status)
+        status $prog
+        ;;
+  restart|force-reload)
+        stop
+        start
+        ;;
+  try-restart|condrestart)
+        if status $prog > /dev/null; then
+            stop
+            start
+        fi
+        ;;
+  reload)
+        exit 3
+        ;;
+  *)
+        echo $"Usage: $0 {start|stop|status|restart|try-restart|force-reload}"
+        exit 2
+esac
+' | $SUDO tee /etc/init.d/cloudinit
+$SUDO chmod +x /etc/init.d/cloudinit
+$SUDO chkconfig cloudinit on
+}
+
+install_debian() {
 echo '
 #!/bin/sh
 
@@ -114,8 +200,9 @@ $SUDO systemctl enable cloudinit.service
 install_cloudinit() {
     grep -q Arch /etc/issue && install_systemd
     grep -q "CentOS Linux 7" /etc/os-release && install_systemd
+    grep -q "CentOS release 6." /etc/issue && install_centos
     grep -qE "Ubuntu 14.04|Ubuntu 14.10|Ubuntu precise|Precise Pangolin" /etc/os-release && install_upstart
-    grep -q "Debian GNU/Linux 7" /etc/os-release && install_sysvinit
+    grep -q "Debian GNU/Linux 7" /etc/os-release && install_debian
 }
 
 
