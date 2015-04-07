@@ -165,7 +165,7 @@ case $1 in
 esac
 ' | $SUDO tee /etc/init.d/cloudinit
 $SUDO chmod +x /etc/init.d/cloudinit
-$SUDO update-rc.d cloudinit enable
+$SUDO update-rc.d cloudinit defaults
 }
 
 install_upstart() {
