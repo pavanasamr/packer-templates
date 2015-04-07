@@ -17,7 +17,7 @@
 	path = templates/debian
 	url = git://github.com/vtolstov/packer-debian.git
 	branch = master
-	revision = e40a06a70194410f8084df6e3b899fc15e339d22
+	revision = ee7f1280c28475feda8d48a2b5eb6164e8b7c619
 [module "fedora"]
 	path = templates/fedora
 	url = git://github.com/vtolstov/packer-fedora.git
@@ -82,7 +82,7 @@
 	path = templates/openbsd
 	url = git://github.com/vtolstov/packer-openbsd.git
 	branch = master
-	revision = df4652ef8e035c0961eea14edf1ea226af236856
+	revision = 1e7f3dd9e044ca6819106c9025720d2042e29abb
 [module "wordpress"]
 	path = templates/wordpress
 	url = git://github.com/vtolstov/packer-wordpress.git
