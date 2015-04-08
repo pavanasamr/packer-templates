@@ -3,6 +3,7 @@
 URL="http://cdn.selfip.ru/public/cloudinit"
 ARCH="x86_32"
 SUDO="$(which sudo)"
+BIN=""
 
 case "$(uname -m)" in
     "x86_64")
@@ -12,12 +13,15 @@ esac
 
 case "$(uname)" in
     "Linux")
+        BIN="/usr/bin/cloudinit"
         URL="${URL}-linux-${ARCH}"
         ;;
     "FreeBSD")
+        BIN="/usr/local/bin/cloudinit"
         URL="${URL}-freebsd-${ARCH}"
         ;;
     "OpenBSD")
+        BIN="/usr/local/bin/cloudinit"
         URL="${URL}-openbsd-${ARCH}"
         ;;
 esac
@@ -168,6 +172,35 @@ $SUDO chmod +x /etc/init.d/cloudinit
 $SUDO update-rc.d cloudinit defaults
 }
 
+install_bsd() {
+echo '
+#!/bin/sh
+#
+#
+
+# PROVIDE: cloudinit
+# REQUIRE: LOGIN NETWORKING FILESYSTEMS
+# KEYWORD: shutdown
+
+. /etc/rc.subr
+
+name="cloudinit"
+rcvar="cloudinit_enable"
+stop_cmd=":"
+start_cmd="cloudinit_start"
+
+cloudinit_start()
+{
+    /usr/local/bin/cloudinit -from-openstack-metadata=http://169.254.169.254/
+}
+
+load_rc_config $name
+run_rc_command "$1"
+' | $SUDO tee /usr/local/etc/rc.d/cloudinit
+$SUDO chmod +x /usr/local/etc/rc.d/cloudinit
+echo 'cloudinit_enable="YES"' | $SUDO tee -a /etc/rc.conf
+}
+
 install_upstart() {
 echo '
 # cloudinit
@@ -202,11 +235,11 @@ install_cloudinit() {
     grep -q "CentOS release 6." /etc/issue && install_centos
     grep -qE "Ubuntu 14.04|Ubuntu 14.10|Ubuntu precise|Precise Pangolin" /etc/os-release && install_upstart
     grep -q "Debian GNU/Linux 7" /etc/os-release && install_debian
+    uname | grep -q FreeBSD && install_bsd
 }
 
-
-$SUDO curl --progress ${URL} --output /usr/bin/cloudinit
-$SUDO chmod +x /usr/bin/cloudinit
+$SUDO curl --progress ${URL} --output ${BIN}
+$SUDO chmod +x ${BIN}
 
 install_cloudinit
 
