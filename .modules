@@ -2,7 +2,7 @@
 	path = templates/exherbo
 	url = git://github.com/vtolstov/packer-exherbo.git
 	branch = master
-	revision = e194eba1946d49af978177f559c5355e6877a6b5
+	revision = f204636702704f34e07d31ed4c6ac48ecc989942
 [module "archlinux"]
 	path = templates/archlinux
 	url = git://github.com/vtolstov/packer-archlinux.git
@@ -27,7 +27,7 @@
 	path = templates/freebsd
 	url = git://github.com/vtolstov/packer-freebsd.git
 	branch = master
-	revision = 9bdceae6f7e1acfd5ebfde83a5cf1d4250a87db7
+	revision = 53a2911d81d1b2013b776a26df2e1ab432ffbc4b
 [module "freepbx"]
 	path = templates/freepbx
 	url = git://github.com/vtolstov/packer-freepbx.git

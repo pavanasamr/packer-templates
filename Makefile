@@ -106,7 +106,10 @@ push:
 list:
 	@for module in $(MODULES); \
 	do \
-		echo "$${module}" ;\
+		JOBS=$$(/usr/bin/jq -r '.builders[].vm_name' templates/$${module}/*.json) ;\
+		for JOB in $${JOBS}; do \
+			echo $${JOB}; \
+		done ;\
 	done
 
 update:
