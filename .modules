@@ -2,7 +2,7 @@
 	path = templates/exherbo
 	url = git://github.com/vtolstov/packer-exherbo.git
 	branch = master
-	revision = e194eba1946d49af978177f559c5355e6877a6b5
+	revision = f204636702704f34e07d31ed4c6ac48ecc989942
 [module "archlinux"]
 	path = templates/archlinux
 	url = git://github.com/vtolstov/packer-archlinux.git
@@ -12,22 +12,22 @@
 	path = templates/centos
 	url = git://github.com/vtolstov/packer-centos.git
 	branch = master
-	revision = b18327d162c486ca3a1364b48efb1d29dc747e13
+	revision = 1461eb2de21c25badaf15a56fa9994aa033272ff
 [module "debian"]
 	path = templates/debian
 	url = git://github.com/vtolstov/packer-debian.git
 	branch = master
-	revision = 98244c0bb84919fc2d19ca41ebe51957275aa53a
+	revision = ee7f1280c28475feda8d48a2b5eb6164e8b7c619
 [module "fedora"]
 	path = templates/fedora
 	url = git://github.com/vtolstov/packer-fedora.git
 	branch = master
-	revision = c5f0940b36970eee9e3620b335da16b026940417
+	revision = 1b86a6e7c69d53aa406ddbd66ae99d22b48d5236
 [module "freebsd"]
 	path = templates/freebsd
 	url = git://github.com/vtolstov/packer-freebsd.git
 	branch = master
-	revision = 9bdceae6f7e1acfd5ebfde83a5cf1d4250a87db7
+	revision = 53a2911d81d1b2013b776a26df2e1ab432ffbc4b
 [module "freepbx"]
 	path = templates/freepbx
 	url = git://github.com/vtolstov/packer-freepbx.git
@@ -42,12 +42,12 @@
 	path = templates/opensuse
 	url = git://github.com/vtolstov/packer-opensuse.git
 	branch = master
-	revision = c2aba898b26678b5e009221421d1a5fff326b7f1
+	revision = 560168cf71458b2455b74b89a7dc1b79cd89d6d5
 [module "ubuntu"]
 	path = templates/ubuntu
 	url = git://github.com/vtolstov/packer-ubuntu.git
 	branch = master
-	revision = 70e38436467650da3f2ff92f40b05d154f8a8b3d
+	revision = 84b70025b9d524bd7e5526dfe1d5d2e88c47fac1
 [module "clodo"]
 	path = templates/clodo
 	url = ssh://git@stash.clodo.ru/cl15/packer-clodo.git
@@ -67,7 +67,7 @@
 	path = templates/coreos
 	url = git://github.com/vtolstov/packer-coreos.git
 	branch = master
-	revision = d165e0bc904a6c901321c12bc64e85d1c5c1f157
+	revision = 53455739720c2bdde877a50e4b04699ccfcb1632
 [module "altlinux"]
 	path = templates/altlinux
 	url = git://github.com/vtolstov/packer-altlinux.git
@@ -77,12 +77,12 @@
 	path = templates/altlinuxspt
 	url = git@bitbucket.org:vtolstov/packer-altlinuxspt.git
 	branch = master
-	revision = 5058e34a418b9a381c59451ace09ae3554005ca4
+	revision = 51cd2468d3c372004efb4cd005fe602727b65275
 [module "openbsd"]
 	path = templates/openbsd
 	url = git://github.com/vtolstov/packer-openbsd.git
 	branch = master
-	revision = df4652ef8e035c0961eea14edf1ea226af236856
+	revision = 1e7f3dd9e044ca6819106c9025720d2042e29abb
 [module "wordpress"]
 	path = templates/wordpress
 	url = git://github.com/vtolstov/packer-wordpress.git
