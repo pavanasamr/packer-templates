@@ -2,7 +2,7 @@
 	path = templates/exherbo
 	url = git://github.com/vtolstov/packer-exherbo.git
 	branch = master
-	revision = 1aaee92bf0dcd854b6aed93ec6b43c003bef2aae
+	revision = 37ca891aff509228b600bc2ca1897796395bc7a0
 [module "archlinux"]
 	path = templates/archlinux
 	url = git://github.com/vtolstov/packer-archlinux.git

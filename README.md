@@ -3,12 +3,11 @@ packer-builder
 
 Clone:
 
-* git clone git@github.com:ClodoCorp/packer-builder.git
+* git clone git@github.com:vtolstov/packer-builder.git
 
 Prepare:
 
 * make tools
-* make modules
 * make update
 
 Build:
