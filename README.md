@@ -3,7 +3,7 @@ packer-builder
 
 Clone:
 
-* git clone git@github.com:vtolstov/packer-builder.git
+* git clone git@github.com:vtolstov/packer-templates.git
 
 Prepare:
 
