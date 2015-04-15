@@ -8,7 +8,7 @@ JENKINS_URL ?=
 
 .PHONY : clean update install list pull push commit modules ci
 
-all: tools build
+all: tools update
 
 install:
 	$(eval TPL := $(filter-out $@,$(MAKECMDGOALS)))
