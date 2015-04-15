@@ -230,11 +230,30 @@ WantedBy=multi-user.target
 $SUDO systemctl enable cloudinit.service
 }
 
+install_gentoo() {
+echo '
+#!/sbin/runscript
+
+command="/usr/bin/cloudinit"
+command_args="-from-openstack-metadata=http://169.254.169.254/"
+pidfile="/var/run/cloudinit.pid"
+
+depend() {
+        use net dns logger
+        after ntp-client
+}
+
+' | $SUDO tee /etc/init.d/cloudinit
+$SUDO chmod +x /etc/init.d/cloudinit
+$SUDO rc-update add cloudinit
+}
+
 install_cloudinit() {
     grep -qE "Arch Linux|Exherbo|openSUSE 13|Fedora 2|CentOS Linux 7" /etc/os-release && install_systemd
     grep -q "CentOS release 6." /etc/issue && install_centos
     grep -qE "Ubuntu 14.04|Ubuntu 14.10|Ubuntu precise|Precise Pangolin" /etc/os-release && install_upstart
     grep -q "Debian GNU/Linux 7" /etc/os-release && install_debian
+    grep -q "Gentoo" /etc/os-release && install_gentoo
     uname | grep -q FreeBSD && install_bsd
 }
 

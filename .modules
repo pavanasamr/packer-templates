@@ -37,7 +37,7 @@
 	path = templates/gentoo
 	url = git://github.com/vtolstov/packer-gentoo.git
 	branch = master
-	revision = 24a27d1f7e626ce3adfab2763081331297e008b9
+	revision = 72eb4e12c01fe4adfa45519bd835613ea1da50cf
 [module "opensuse"]
 	path = templates/opensuse
 	url = git://github.com/vtolstov/packer-opensuse.git
