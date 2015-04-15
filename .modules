@@ -77,7 +77,7 @@
 	path = templates/altlinuxspt
 	url = git@bitbucket.org:vtolstov/packer-altlinuxspt.git
 	branch = master
-	revision = 51cd2468d3c372004efb4cd005fe602727b65275
+	revision = a7d3639ba5c3cc1f5c12681dfb8c01c358eae673
 [module "openbsd"]
 	path = templates/openbsd
 	url = git://github.com/vtolstov/packer-openbsd.git
@@ -123,3 +123,9 @@
 	url = git://github.com/vtolstov/packer-gitlab.git
 	branch = master
 	revision = 5bc1ed6a868b5a6028e01a29c43ccd18a23cd41a
+[module "netbsd"]
+	path = templates/netbsd
+	url = git://github.com/vtolstov/packer-netbsd.git
+	branch = master
+	revision = 1bebd23c63714c4388f06bfe70d2644f342d1a61
+
