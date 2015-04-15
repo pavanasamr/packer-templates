@@ -28,8 +28,7 @@ esac
 
 
 install_centos() {
-echo '
-#!/bin/bash
+echo '#!/bin/bash
 #
 # cloudinit     This shell script takes care of starting and stopping
 #               cloudinit.
@@ -114,8 +113,7 @@ $SUDO chkconfig cloudinit on
 }
 
 install_debian() {
-echo '
-#!/bin/sh
+echo '#!/bin/sh
 
 ### BEGIN INIT INFO
 # Provides:        cloudinit
@@ -173,8 +171,7 @@ $SUDO update-rc.d cloudinit defaults
 }
 
 install_bsd() {
-echo '
-#!/bin/sh
+echo '#!/bin/sh
 #
 #
 
@@ -202,8 +199,7 @@ echo 'cloudinit_enable="YES"' | $SUDO tee -a /etc/rc.conf
 }
 
 install_upstart() {
-echo '
-# cloudinit
+echo '# cloudinit
 start on (local-filesystems and net-device-up IFACE!=lo)
 
 console log
@@ -214,8 +210,7 @@ exec /usr/bin/cloudinit -from-openstack-metadata=http://169.254.169.254/
 }
 
 install_systemd() {
-echo '
-[Unit]
+echo '[Unit]
 Description=cloudinit
 After=network.target
 
@@ -231,8 +226,7 @@ $SUDO systemctl enable cloudinit.service
 }
 
 install_gentoo() {
-echo '
-#!/sbin/runscript
+echo '#!/sbin/runscript
 
 command="/usr/bin/cloudinit"
 command_args="-from-openstack-metadata=http://169.254.169.254/"
