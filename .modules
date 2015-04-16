@@ -97,7 +97,7 @@
 	path = templates/bitrixenv
 	url = git://github.com/vtolstov/packer-bitrixenv.git
 	branch = master
-	revision = d20a23db0a7feda20f983cfee5888144b2c460ab
+	revision = 5c1a93aaf30c93df91f0f7038a6c2a54c7fed239
 [module "drupal"]
 	path = templates/drupal
 	url = git://github.com/vtolstov/packer-drupal.git
@@ -107,7 +107,7 @@
 	path = templates/ajenti
 	url = git://github.com/vtolstov/packer-ajenti.git
 	branch = master
-	revision = 05ff967cb0f25bdf24061201df3941e6beb0afc6
+	revision = 38870b577dab083ef4b5604feed7e4473bcc6b42
 [module "lamp"]
 	path = templates/lamp
 	url = git://github.com/vtolstov/packer-lamp.git
