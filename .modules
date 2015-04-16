@@ -107,7 +107,7 @@
 	path = templates/ajenti
 	url = git://github.com/vtolstov/packer-ajenti.git
 	branch = master
-	revision = 25fa2ba38371321f58d24ee97e92cc5854f3d3b9
+	revision = 1735d77c254720b9287fbed0434204315bc2266c
 [module "lamp"]
 	path = templates/lamp
 	url = git://github.com/vtolstov/packer-lamp.git
