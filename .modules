@@ -87,7 +87,7 @@
 	path = templates/wordpress
 	url = git://github.com/vtolstov/packer-wordpress.git
 	branch = master
-	revision = d7e82722e9eb11e545640fa5110555eacd15c0a6
+	revision = 42ba4de34be0dd2d94b867a2122a614191f0f325
 [module "joomla"]
 	path = templates/joomla
 	url = git://github.com/vtolstov/packer-joomla.git
@@ -107,7 +107,7 @@
 	path = templates/ajenti
 	url = git://github.com/vtolstov/packer-ajenti.git
 	branch = master
-	revision = 38870b577dab083ef4b5604feed7e4473bcc6b42
+	revision = 25fa2ba38371321f58d24ee97e92cc5854f3d3b9
 [module "lamp"]
 	path = templates/lamp
 	url = git://github.com/vtolstov/packer-lamp.git
