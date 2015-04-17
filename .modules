@@ -122,7 +122,7 @@
 	path = templates/gitlab
 	url = https://github.com/vtolstov/packer-gitlab.git
 	branch = master
-	revision = 6e26333b565d0b0b41d2f085fb4e2e2a2fb7dea2
+	revision = 9843f9a3c8065c474a45a8cc9a0e27e89e0db12f
 [module "netbsd"]
 	path = templates/netbsd
 	url = git://github.com/vtolstov/packer-netbsd.git
