@@ -27,3 +27,15 @@ Dependencies:
 * jq
 * qemu
 
+Development:
+
+For easy commit you will need to add this lines to .gitconfig
+
+```
+[url "git@github.com:"]
+        insteadOf = https://github.com/
+[url "git@bitbucket.org:"]
+        insteadOf = https://bitbucket.org/
+[url "ssh://git@stash.clodo.ru/"]
+        insteadOf = https://stash.clodo.ru/scm/
+```
