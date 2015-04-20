@@ -87,7 +87,7 @@
 	path = templates/wordpress
 	url = https://github.com/vtolstov/packer-wordpress.git
 	branch = master
-	revision = 645aed9796cd7c9ae2a02f84cf5b23d74f0b630f
+	revision = d17ffbf9843a793ee411cc2f7a1f8cbaaf5d0ac7
 [module "joomla"]
 	path = templates/joomla
 	url = https://github.com/vtolstov/packer-joomla.git
