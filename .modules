@@ -17,7 +17,7 @@
 	path = templates/debian
 	url = https://github.com/vtolstov/packer-debian.git
 	branch = master
-	revision = ee7f1280c28475feda8d48a2b5eb6164e8b7c619
+	revision = 71d8d3101ea71629b22d56484cbe60dd71494c6e
 [module "fedora"]
 	path = templates/fedora
 	url = https://github.com/vtolstov/packer-fedora.git

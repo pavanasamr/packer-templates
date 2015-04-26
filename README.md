@@ -27,6 +27,12 @@ Dependencies:
 * jq
 * qemu
 
+Charms:
+```
+add-apt-repository --yes ppa:juju/proposed
+apt-key adv --keyserver keyserver.ubuntu.com --recv-keys C8068B11
+```
+
 Development:
 
 For easy commit you will need to add this lines to .gitconfig
