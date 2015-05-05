@@ -242,6 +242,92 @@ $SUDO chmod +x /etc/init.d/cloudinit
 $SUDO rc-update add cloudinit
 }
 
+install_altlinux() {
+echo '#!/bin/sh
+#
+# cloudinit     This shell script takes care of starting and stopping
+#               cloudinit.
+#
+# chkconfig: 2345 55 10
+# description: cloudinit.
+
+### BEGIN INIT INFO
+# Provides:          cloudinit
+# Required-Start:    $network $remote_fs $syslog
+# Required-Stop:     $network $remote_fs $syslog
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Start cloudinit
+# Description:       Enable cloudinit.
+### END INIT INFO
+
+WITHOUT_RC_COMPAT=1
+
+# Source function library.
+. /etc/init.d/functions
+PROG=/usr/bin/cloudinit
+PIDFILE=/var/run/cloudinit.pid
+LOCKFILE=/var/lock/subsys/cloudinit
+RETVAL=0
+
+start()
+{
+        is_yes "$NETWORKING" || return 0
+
+        start_daemon --pidfile "$PIDFILE" --lockfile "$LOCKFILE" --expect-user root -- "$PROG" -from-openstack-metadata=http://169.254.169.254/
+        RETVAL=$?
+        return $RETVAL
+}
+
+stop()
+{
+        stop_daemon --pidfile "$PIDFILE" --lockfile "$LOCKFILE" --expect-user root -- cloudinit
+        RETVAL=$?
+        return $RETVAL
+}
+
+restart()
+{
+        stop
+        start
+}
+
+# See how we were called.
+case "$1" in
+        start)
+                start
+                ;;
+        stop)
+                stop
+                ;;
+        restart|reload)
+                restart
+                ;;
+        condstop)
+                if [ -e "$LOCKFILE" ]; then
+                        stop
+                fi
+                ;;
+        condrestart)
+                if [ -e "$LOCKFILE" ]; then
+                        restart
+                fi
+                ;;
+        status)
+                status --expect-user root -- cloudinit
+                RETVAL=$?
+                ;;
+        *)
+                msg_usage "${0##*/} {start|stop|restart|condstop|condrestart|status}"
+                RETVAL=1
+esac
+
+exit $RETVAL
+' | $SUDO tee /etc/init.d/cloudinit
+$SUDO chmod +x /etc/init.d/cloudinit
+$SUDO chkconfig cloudinit on
+}
+
 install_cloudinit() {
     grep -qE "Arch Linux|Exherbo|openSUSE 13|Fedora 2|CentOS Linux 7" /etc/os-release && install_systemd
     grep -q "CentOS release 6." /etc/issue && install_centos
@@ -249,6 +335,7 @@ install_cloudinit() {
     grep -q "Debian GNU/Linux 7" /etc/os-release && install_debian
     grep -q "Gentoo" /etc/os-release && install_gentoo
     uname | grep -q FreeBSD && install_bsd
+    grep -q "ALT Linux 6" /etc/altlinux-release && install_altlinux
 }
 
 $SUDO curl --progress ${URL} --output ${BIN}
