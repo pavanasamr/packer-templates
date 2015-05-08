@@ -12,12 +12,12 @@
 	path = templates/centos
 	url = https://github.com/vtolstov/packer-centos.git
 	branch = master
-	revision = 1461eb2de21c25badaf15a56fa9994aa033272ff
+	revision = a49386d564d1abd5ac76f3a5fd18101382b8590d
 [module "debian"]
 	path = templates/debian
 	url = https://github.com/vtolstov/packer-debian.git
 	branch = master
-	revision = 71d8d3101ea71629b22d56484cbe60dd71494c6e
+	revision = 299ee3ec1c605954e8cded5e60d7a43f96aed88c
 [module "fedora"]
 	path = templates/fedora
 	url = https://github.com/vtolstov/packer-fedora.git
@@ -47,7 +47,7 @@
 	path = templates/ubuntu
 	url = https://github.com/vtolstov/packer-ubuntu.git
 	branch = master
-	revision = d0376fc0e898482c8d669f26792be360386c3297
+	revision = 88efe934d6ee5d9a2557de061ef7f70f6f0cccf3
 [module "clodo"]
 	path = templates/clodo
 	url = https://stash.clodo.ru/scm/cl15/packer-clodo.git
@@ -77,7 +77,7 @@
 	path = templates/altlinuxspt
 	url = https://bitbucket.org/vtolstov/packer-altlinuxspt.git
 	branch = master
-	revision = c53d60530324234f30789c3df86207e46f9ba957
+	revision = 1a5d6d7119b2121b0822afb5ecfab66bbc8cde60
 [module "openbsd"]
 	path = templates/openbsd
 	url = https://github.com/vtolstov/packer-openbsd.git
@@ -87,7 +87,7 @@
 	path = templates/wordpress
 	url = https://github.com/vtolstov/packer-wordpress.git
 	branch = master
-	revision = 6b5a0b10ce385930636f47f7abc90c8bea0a2ba7
+	revision = 4c73dc1c23614b9c91d4d19868256aead12366ef
 [module "joomla"]
 	path = templates/joomla
 	url = https://github.com/vtolstov/packer-joomla.git
@@ -128,4 +128,3 @@
 	url = https://github.com/vtolstov/packer-netbsd.git
 	branch = master
 	revision = 1bebd23c63714c4388f06bfe70d2644f342d1a61
-
