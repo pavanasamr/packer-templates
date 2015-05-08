@@ -2,7 +2,7 @@
 	path = templates/exherbo
 	url = https://github.com/vtolstov/packer-exherbo.git
 	branch = master
-	revision = afbd2196a07712cb8b2d99524b385a3910a8a191
+	revision = f83fca013d29866c5e08ec80fb674a135562ee72
 [module "archlinux"]
 	path = templates/archlinux
 	url = https://github.com/vtolstov/packer-archlinux.git
@@ -87,7 +87,7 @@
 	path = templates/wordpress
 	url = https://github.com/vtolstov/packer-wordpress.git
 	branch = master
-	revision = 3c2442555c24c2ae905c06a394d3f66ba2671ada
+	revision = 6b5a0b10ce385930636f47f7abc90c8bea0a2ba7
 [module "joomla"]
 	path = templates/joomla
 	url = https://github.com/vtolstov/packer-joomla.git
