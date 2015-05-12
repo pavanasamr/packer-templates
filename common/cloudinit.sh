@@ -84,7 +84,7 @@ case "$1" in
   start)
         start
         ;;
-  stop) 
+  stop)
         stop
         ;;
   status)
@@ -120,7 +120,7 @@ echo '#!/bin/sh
 # Required-Start:  $network $local_fs
 # Required-Stop:   $network $local_fs
 # Default-Start:   2 3 4 5
-# Default-Stop: 
+# Default-Stop:
 # Short-Description: Start cloudinit
 ### END INIT INFO
 
@@ -130,7 +130,7 @@ PATH=/sbin:/bin:/usr/sbin:/usr/bin
 
 DAEMON=/usr/bin/cloudinit
 PIDFILE=/var/run/cloudinit.pid
-  
+
 test -x $DAEMON || exit 5
 
 case $1 in
@@ -333,6 +333,7 @@ install_cloudinit() {
     grep -q "CentOS release 6." /etc/issue && install_centos
     grep -qE "Ubuntu 14.04|Ubuntu 14.10|Ubuntu precise|Precise Pangolin" /etc/os-release && install_upstart
     grep -q "Debian GNU/Linux 7" /etc/os-release && install_debian
+    grep -q "Debian GNU/Linux 8" /etc/os-release && install_systemd
     grep -q "Gentoo" /etc/os-release && install_gentoo
     uname | grep -q FreeBSD && install_bsd
     grep -q "ALT Linux 6" /etc/altlinux-release && install_altlinux
