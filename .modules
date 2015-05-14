@@ -52,7 +52,7 @@
 	path = templates/clodo
 	url = https://stash.clodo.ru/scm/cl15/packer-clodo.git
 	branch = master
-	revision = 86bbe8a785aa55a2d1408b08d715974efdd75223
+	revision = d5be44082807d9cc3e2c4ece262bf68f0509bede
 [module "mighost"]
 	path = templates/mighost
 	url = https://bitbucket.org/vtolstov/packer-mighost.git
@@ -62,7 +62,7 @@
 	path = templates/clodo2
 	url = https://stash.clodo.ru/scm/clodo/packer-clodo2.git
 	branch = master
-	revision = 727efa80a396fcbeb69b9d16e0d3088a525498a7
+	revision = 9e2cbfc489b1b4d5f0c07c4a905db35a668fafde
 [module "coreos"]
 	path = templates/coreos
 	url = https://github.com/vtolstov/packer-coreos.git
