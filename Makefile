@@ -135,7 +135,7 @@ tools:
 	@echo Install packer
 	@rm -rf $(PWD)/bin/*
 	@wget --no-check-certificate -c http://bb.selfip.ru/packer.tar.gz -O $(PWD)/bin/packer.tar.gz
-	@tar -zxf $(PWD)/bin/packer.tar.gz -C $(PWD)
+	@tar -zxvf $(PWD)/bin/packer.tar.gz -C $(PWD)
 	@rm -f $(PWD)/bin/packer.tar.gz
 
 source:
@@ -150,8 +150,8 @@ source:
 	@bash -c "cd $(PWD)/tmp/src/github.com/mitchellh/packer; curl -Ls https://github.com/mitchellh/packer/pull/2120.diff | patch -p1"
 	@GOPATH=$(PWD)/tmp GOBIN=$(PWD)/bin/ make -C $(PWD)/tmp/src/github.com/mitchellh/packer dev || :
 	@mv $(PWD)/tmp/src/github.com/mitchellh/packer/bin/* $(PWD)/bin/
-	GOPATH=$(PWD)/tmp GOBIN=$(PWD)/bin/ go get -u github.com/vtolstov/packer-post-processor-squashfs
-	GOPATH=$(PWD)/tmp GOBIN=$(PWD)/bin/ go get -u github.com/vtolstov/packer-post-processor-compress
-	GOPATH=$(PWD)/tmp GOBIN=$(PWD)/bin/ go get -u github.com/vtolstov/packer-post-processor-checksum
-	GOPATH=$(PWD)/tmp GOBIN=$(PWD)/bin/ go get -u github.com/vtolstov/packer-builder-libvirt || true
+	GOPATH=$(PWD)/tmp GOBIN=$(PWD)/bin/ go get -f -u github.com/vtolstov/packer-post-processor-squashfs
+	GOPATH=$(PWD)/tmp GOBIN=$(PWD)/bin/ go get -f -u github.com/vtolstov/packer-post-processor-compress
+	GOPATH=$(PWD)/tmp GOBIN=$(PWD)/bin/ go get -f -u github.com/vtolstov/packer-post-processor-checksum
+	GOPATH=$(PWD)/tmp GOBIN=$(PWD)/bin/ go get -f -u github.com/vtolstov/packer-builder-libvirt || true
 	@bash -c "tar -zcf $(PWD)/tmp/packer.tar.gz $(PWD)/bin/{packer,packer-builder-digitalocean,packer-builder-libvirt,packer-builder-null,packer-builder-qemu,packer-post-processor-checksum,packer-post-processor-compress,packer-post-processor-squashfs,packer-provisioner-chef-client,packer-provisioner-chef-solo,packer-provisioner-file,packer-provisioner-shell}"
