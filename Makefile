@@ -43,8 +43,8 @@ pull:
 		fi ;\
 		if [ -d $(PWD)/$${path} ]; then \
 			echo "try to update module $${path}" ;\
-			git --git-dir=$(PWD)/$${path}/.git --work-tree=$(PWD)/$${path} clean -d -f -q
-			git --git-dir=$(PWD)/$${path}/.git --work-tree=$(PWD)/$${path} reset --hard
+			git --git-dir=$(PWD)/$${path}/.git --work-tree=$(PWD)/$${path} clean -d -f -q ;\
+			git --git-dir=$(PWD)/$${path}/.git --work-tree=$(PWD)/$${path} reset --hard ;\
 			git --git-dir=$(PWD)/$${path}/.git --work-tree=$(PWD)/$${path} branch | grep -q ^$${branch} || git --git-dir=$(PWD)/$${path}/.git --work-tree=$(PWD)/$${path} checkout --quiet $${branch} ;\
 			git --git-dir=$(PWD)/$${path}/.git --work-tree=$(PWD)/$${path} pull --quiet --rebase ;\
 			if [ "x$${revision}" != "x" ]; then \
