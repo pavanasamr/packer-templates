@@ -97,7 +97,7 @@
 	path = templates/bitrixenv
 	url = https://github.com/vtolstov/packer-bitrixenv.git
 	branch = master
-	revision = a4df470fba02bc501be1240d031e9d83aca51828
+	revision = 2ff0576ec29677da955eddf09b338eff5648f5a9
 [module "drupal"]
 	path = templates/drupal
 	url = https://github.com/vtolstov/packer-drupal.git
