@@ -12,7 +12,7 @@
 	path = templates/centos
 	url = https://github.com/vtolstov/packer-centos.git
 	branch = master
-	revision = 174e39cfe7e97e09261b8a565b2d6f97c229dff9
+	revision = 1455a72781944646b046ccecbcb0706434308ad8
 [module "debian"]
 	path = templates/debian
 	url = https://github.com/vtolstov/packer-debian.git
