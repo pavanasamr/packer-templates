@@ -134,8 +134,8 @@ tools:
 	@mkdir -p $(PWD)/tmp $(PWD)/bin
 	@echo Install packer
 	@rm -rf $(PWD)/bin/*
-	@wget --no-check-certificate -c http://bb.selfip.ru/packer.tar.gz -O $(PWD)/bin/packer.tar.gz
-	@tar -zxvf $(PWD)/bin/packer.tar.gz -C $(PWD)/bin/
+	@wget --no-check-certificate -q -c http://bb.selfip.ru/packer.tar.gz -O $(PWD)/bin/packer.tar.gz
+	@tar -zxf $(PWD)/bin/packer.tar.gz -C $(PWD)/bin/
 	@rm -f $(PWD)/bin/packer.tar.gz
 
 source:
