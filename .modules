@@ -7,7 +7,7 @@
 	path = templates/archlinux
 	url = https://github.com/vtolstov/packer-archlinux.git
 	branch = master
-	revision = c96c447ba508f31518d9e6096e9e9b79d8331e9f
+	revision = c2d0ec115f0f69d54372091eb17d04281607c0b5
 [module "centos"]
 	path = templates/centos
 	url = https://github.com/vtolstov/packer-centos.git
@@ -47,7 +47,7 @@
 	path = templates/ubuntu
 	url = https://github.com/vtolstov/packer-ubuntu.git
 	branch = master
-	revision = 86a2be2a35d9c6e4561482ffb34b5e046402ef7b
+	revision = 7dd963b0b8bba1cf0674d3b2f5d8826624aedd85
 [module "clodo"]
 	path = templates/clodo
 	url = https://stash.clodo.ru/scm/cl15/packer-clodo.git
