@@ -27,7 +27,7 @@
 	path = templates/freebsd
 	url = https://github.com/vtolstov/packer-freebsd.git
 	branch = master
-	revision = 0ec1eb671783913a732acd700328a0cecc28f00a
+	revision = 939768a77f374e8d3982f1cc4b787c4ef5ed3d63
 [module "freepbx"]
 	path = templates/freepbx
 	url = https://github.com/vtolstov/packer-freepbx.git
