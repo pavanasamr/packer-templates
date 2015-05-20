@@ -2,77 +2,77 @@
 	path = templates/exherbo
 	url = https://github.com/vtolstov/packer-exherbo.git
 	branch = master
-	revision = a3a9e5a775e0c16f637ec46399fb2f8d50535477
+	revision = 43965e9fec141f7a2b15b0395872b7809091778d
 [module "archlinux"]
 	path = templates/archlinux
 	url = https://github.com/vtolstov/packer-archlinux.git
 	branch = master
-	revision = de3611409424b4b277f415219ad5beb0e15b0ee1
+	revision = 71a19a9bb2b2b28a88138a6c20132ca35b76b7c4
 [module "centos"]
 	path = templates/centos
 	url = https://github.com/vtolstov/packer-centos.git
 	branch = master
-	revision = fa2aa2013a4364e3399a805458b8e38dc7dcad75
+	revision = c305686943b88839d9cf87265a3921dd6894f84f
 [module "debian"]
 	path = templates/debian
 	url = https://github.com/vtolstov/packer-debian.git
 	branch = master
-	revision = 253c7570282096f73d0a6d3528009ed37faea9dd
+	revision = efa18b0e6e3a3cefb54f3ccdb5d037632f4e90ec
 [module "fedora"]
 	path = templates/fedora
 	url = https://github.com/vtolstov/packer-fedora.git
 	branch = master
-	revision = 834fdc88e708a043b4ecc9334034f7c12fff4281
+	revision = b3c68199f883d0dd46f5c55cad5e0938a10e6455
 [module "freebsd"]
 	path = templates/freebsd
 	url = https://github.com/vtolstov/packer-freebsd.git
 	branch = master
-	revision = 939768a77f374e8d3982f1cc4b787c4ef5ed3d63
+	revision = f91a2bfeedcdc628312d70111b36268ab45552ea
 [module "freepbx"]
 	path = templates/freepbx
 	url = https://github.com/vtolstov/packer-freepbx.git
 	branch = master
-	revision = 262d3fb3416867aedff94da900db0a746dd53371
+	revision = a40f3474e2134c73b7ce3ed0f1d57889a8a922ea
 [module "gentoo"]
 	path = templates/gentoo
 	url = https://github.com/vtolstov/packer-gentoo.git
 	branch = master
-	revision = 8ea6b6de94edb7f9576f714a4f03e3a5a821acfb
+	revision = fa5dde417659bb5b0db8c633c8ac68526cbf5041
 [module "opensuse"]
 	path = templates/opensuse
 	url = https://github.com/vtolstov/packer-opensuse.git
 	branch = master
-	revision = eede10391a720d9d3f78034f1169ea7ef39b89bc
+	revision = da724e2647bbe03deda6efe2cd4cc9ea285152fe
 [module "ubuntu"]
 	path = templates/ubuntu
 	url = https://github.com/vtolstov/packer-ubuntu.git
 	branch = master
-	revision = 477f718c5eded1b6e51160feaff5af8202754e58
+	revision = 85d9129e3c5de851233c47b86004b1cc1a5f7680
 [module "clodo"]
 	path = templates/clodo
 	url = https://stash.clodo.ru/scm/cl15/packer-clodo.git
 	branch = master
-	revision = 31bcd97402cbf4db32a2354c5ca01bffcb0d3b5f
+	revision = 7a296f18d915a3326deea1e9ecb7740d724e1f42
 [module "mighost"]
 	path = templates/mighost
 	url = https://bitbucket.org/vtolstov/packer-mighost.git
 	branch = master
-	revision = 30c732a05d582c6b73e0d34751a93a4f5fc94e65
+	revision = 6d8d9f180224189fd07ad7ea95b4ba6b22c183d9
 [module "clodo2"]
 	path = templates/clodo2
 	url = https://stash.clodo.ru/scm/clodo/packer-clodo2.git
 	branch = master
-	revision = d972aece9f469f0aa9ad3406f5cd7d505044d2b5
+	revision = 58453ffd644a927478882b7abb5130b79368bbd6
 [module "coreos"]
 	path = templates/coreos
 	url = https://github.com/vtolstov/packer-coreos.git
 	branch = master
-	revision = d0056bec8951423f47ff6c1431628db17248eb26
+	revision = c3517da441c86098a228c7c0a931ba6afc5a2389
 [module "altlinux"]
 	path = templates/altlinux
 	url = https://github.com/vtolstov/packer-altlinux.git
 	branch = master
-	revision = 60bbd0bcab8a85b4176abc59f2bacdcf3c5b4d7b
+	revision = 397a4600e118867770df886b2735add07f09d553
 [module "altlinuxspt"]
 	path = templates/altlinuxspt
 	url = https://bitbucket.org/vtolstov/packer-altlinuxspt.git
@@ -82,49 +82,49 @@
 	path = templates/openbsd
 	url = https://github.com/vtolstov/packer-openbsd.git
 	branch = master
-	revision = 5dcb3d8659213b6a852a219e0bb8cc3b3a992aee
+	revision = beb91868cff01dda3cea352bc6d03c103d82c51e
 [module "wordpress"]
 	path = templates/wordpress
 	url = https://github.com/vtolstov/packer-wordpress.git
 	branch = master
-	revision = 2eae55048d3c902218552cc10d6fc8b1111b2841
+	revision = 38550b49c2479a7ad521c7ada3963f7544e78340
 [module "joomla"]
 	path = templates/joomla
 	url = https://github.com/vtolstov/packer-joomla.git
 	branch = master
-	revision = 187196e1d21b3b15c544e92de1154a840621e8dc
+	revision = f06778c1671e3d0263ca53e37b332c29c280ead8
 [module "bitrixenv"]
 	path = templates/bitrixenv
 	url = https://github.com/vtolstov/packer-bitrixenv.git
 	branch = master
-	revision = 2ff0576ec29677da955eddf09b338eff5648f5a9
+	revision = 9934cd4f23ce00f81a13b3c91cc7d20ed5178845
 [module "drupal"]
 	path = templates/drupal
 	url = https://github.com/vtolstov/packer-drupal.git
 	branch = master
-	revision = fd30ab3738abf53a8bf0cfa43368082387ec8624
+	revision = 7bfefc7b3f266a0eb68f34d00d9bb1833e6d873d
 [module "ajenti"]
 	path = templates/ajenti
 	url = https://github.com/vtolstov/packer-ajenti.git
 	branch = master
-	revision = eb449ba9346f703b1d44236cb263b59ff6d9d69a
+	revision = 1dc9a142b17020b70b547e5e604e42a4f2a9d57b
 [module "lamp"]
 	path = templates/lamp
 	url = https://github.com/vtolstov/packer-lamp.git
 	branch = master
-	revision = fcd4d5cc7754de1d8f67788bfb1530c87a41b1cf
+	revision = 2f0a3065b23ded54f589cf0da88b9b0c5e644957
 [module "django"]
 	path = templates/django
 	url = https://github.com/vtolstov/packer-django.git
 	branch = master
-	revision = b4a1e90cf97ccf28a49d49ec114034252b35436e
+	revision = 21cdadc01a6f1d9dacde75364d03fb145408dc41
 [module "gitlab"]
 	path = templates/gitlab
 	url = https://github.com/vtolstov/packer-gitlab.git
 	branch = master
-	revision = 2933d9c339a1c722213d5b8fb1974302413486c9
+	revision = a93a42c38c2824fb0a528eb0dbdbab56d7474c71
 [module "netbsd"]
 	path = templates/netbsd
 	url = https://github.com/vtolstov/packer-netbsd.git
 	branch = master
-	revision = 8bf726bf10a388f5dd5458e446ca30cdf7a4b9b7
+	revision = 2d3c406b73af50ed335d408838b9f15d8b5c87a5

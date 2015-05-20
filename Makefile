@@ -155,7 +155,8 @@ source:
 	@test -d $(PWD)/tmp/src/github.com/mitchellh/packer || git clone git@github.com:mitchellh/packer.git $(PWD)/tmp/src/github.com/mitchellh/packer
 	@test -d $(PWD)/tmp/src/github.com/mitchellh/packer && bash -c "cd $(PWD)/tmp/src/github.com/mitchellh/packer; git pull; "
 	@bash -c "cd $(PWD)/tmp/src/github.com/mitchellh/packer; curl -Ls https://github.com/mitchellh/packer/pull/2118.diff | patch -p1"
-	@bash -c "cd $(PWD)/tmp/src/github.com/mitchellh/packer; curl -Ls https://github.com/mitchellh/packer/pull/2120.diff | patch -p1"
+#	@bash -c "cd $(PWD)/tmp/src/github.com/mitchellh/packer; curl -Ls https://github.com/mitchellh/packer/pull/2120.diff | patch -p1"
+	@bash -c "cd $(PWD)/tmp/src/github.com/mitchellh/packer; curl -Ls https://github.com/mitchellh/packer/pull/2124.diff | patch -p1"
 	@GOPATH=$(PWD)/tmp GOBIN=$(PWD)/bin/ make -C $(PWD)/tmp/src/github.com/mitchellh/packer dev || :
 	@mv $(PWD)/tmp/src/github.com/mitchellh/packer/bin/* $(PWD)/bin/
 	GOPATH=$(PWD)/tmp GOBIN=$(PWD)/bin/ go get -f -u github.com/vtolstov/packer-post-processor-squashfs
