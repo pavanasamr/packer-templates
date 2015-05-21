@@ -158,7 +158,7 @@ source:
 #	@bash -c "cd $(PWD)/tmp/src/github.com/mitchellh/packer; curl -Ls https://github.com/mitchellh/packer/pull/2120.diff | patch -p1"
 	@bash -c "cd $(PWD)/tmp/src/github.com/mitchellh/packer; curl -Ls https://github.com/mitchellh/packer/pull/2124.diff | patch -p1"
 	@GOPATH=$(PWD)/tmp GOBIN=$(PWD)/bin/ make -C $(PWD)/tmp/src/github.com/mitchellh/packer dev || :
-	@mv $(PWD)/tmp/src/github.com/mitchellh/packer/bin/* $(PWD)/bin/
+	@mv $(PWD)/tmp/src/github.com/mitchellh/packer/bin/{packer,packer-builder-digitalocean,packer-builder-null,packer-builder-qemu,packer-provisioner-chef-client,packer-provisioner-chef-solo,packer-provisioner-file,packer-provisioner-shell} $(PWD)/bin/
 	GOPATH=$(PWD)/tmp GOBIN=$(PWD)/bin/ go get -f -u github.com/vtolstov/packer-post-processor-squashfs
 	GOPATH=$(PWD)/tmp GOBIN=$(PWD)/bin/ go get -f -u github.com/vtolstov/packer-post-processor-compress
 	GOPATH=$(PWD)/tmp GOBIN=$(PWD)/bin/ go get -f -u github.com/vtolstov/packer-post-processor-checksum

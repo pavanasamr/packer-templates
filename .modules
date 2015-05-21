@@ -92,7 +92,7 @@
 	path = templates/joomla
 	url = https://github.com/vtolstov/packer-joomla.git
 	branch = master
-	revision = f06778c1671e3d0263ca53e37b332c29c280ead8
+	revision = 99bb5bee6bc3739e3dc5f83de9a8e8a9f58fa07b
 [module "bitrixenv"]
 	path = templates/bitrixenv
 	url = https://github.com/vtolstov/packer-bitrixenv.git
