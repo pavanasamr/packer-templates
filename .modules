@@ -112,7 +112,7 @@
 	path = templates/lamp
 	url = https://github.com/vtolstov/packer-lamp.git
 	branch = master
-	revision = b77994b02f06c5b06f7c78e6391ec8a915e0eaaf
+	revision = 852da940aa52139dcdcf503f4ab31fcf1e3c6be3
 [module "django"]
 	path = templates/django
 	url = https://github.com/vtolstov/packer-django.git
