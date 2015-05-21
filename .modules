@@ -102,7 +102,7 @@
 	path = templates/drupal
 	url = https://github.com/vtolstov/packer-drupal.git
 	branch = master
-	revision = 7bfefc7b3f266a0eb68f34d00d9bb1833e6d873d
+	revision = 7121998c114942abf28f1200af09fe1b0b8bff0c
 [module "ajenti"]
 	path = templates/ajenti
 	url = https://github.com/vtolstov/packer-ajenti.git
