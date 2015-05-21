@@ -28,6 +28,7 @@ esac
 
 
 install_centos() {
+set -e
 echo '#!/bin/bash
 #
 # cloudinit     This shell script takes care of starting and stopping
@@ -110,9 +111,11 @@ esac
 ' | $SUDO tee /etc/init.d/cloudinit
 $SUDO chmod +x /etc/init.d/cloudinit
 $SUDO chkconfig cloudinit on
+set +e
 }
 
 install_debian() {
+set -e
 echo '#!/bin/sh
 
 ### BEGIN INIT INFO
@@ -168,9 +171,11 @@ esac
 ' | $SUDO tee /etc/init.d/cloudinit
 $SUDO chmod +x /etc/init.d/cloudinit
 $SUDO update-rc.d cloudinit defaults
+set +e
 }
 
 install_bsd() {
+set -e
 echo '#!/bin/sh
 #
 #
@@ -196,9 +201,11 @@ run_rc_command "$1"
 ' | $SUDO tee /usr/local/etc/rc.d/cloudinit
 $SUDO chmod +x /usr/local/etc/rc.d/cloudinit
 echo 'cloudinit_enable="YES"' | $SUDO tee -a /etc/rc.conf
+set +e
 }
 
 install_upstart() {
+set -e
 echo '# cloudinit
 start on (local-filesystems and net-device-up IFACE!=lo)
 
@@ -206,10 +213,11 @@ console log
 
 exec /usr/bin/cloudinit -from-openstack-metadata=http://169.254.169.254/
 ' | $SUDO tee /etc/init/cloudinit.conf
-
+set +e
 }
 
 install_systemd() {
+set -e
 echo '[Unit]
 Description=cloudinit
 After=network.target
@@ -223,9 +231,11 @@ RemainAfterExit=yes
 WantedBy=multi-user.target
 ' | $SUDO tee /etc/systemd/system/cloudinit.service
 $SUDO systemctl enable cloudinit.service
+set +e
 }
 
 install_gentoo() {
+set -e
 echo '#!/sbin/runscript
 
 command="/usr/bin/cloudinit"
@@ -240,9 +250,11 @@ depend() {
 ' | $SUDO tee /etc/init.d/cloudinit
 $SUDO chmod +x /etc/init.d/cloudinit
 $SUDO rc-update add cloudinit
+set +e
 }
 
 install_altlinux() {
+set -e
 echo '#!/bin/sh
 #
 # cloudinit     This shell script takes care of starting and stopping
@@ -326,21 +338,29 @@ exit $RETVAL
 ' | $SUDO tee /etc/init.d/cloudinit
 $SUDO chmod +x /etc/init.d/cloudinit
 $SUDO chkconfig cloudinit on
+set +e
 }
 
 install_cloudinit() {
-    grep -qE "Arch Linux|Exherbo|openSUSE 13|Fedora 2|CentOS Linux 7" /etc/os-release && install_systemd
-    grep -q "CentOS release 6." /etc/issue && install_centos
-    grep -qE "Ubuntu 14.04|Ubuntu 14.10|Ubuntu precise|Precise Pangolin" /etc/os-release && install_upstart
-    grep -q "Debian GNU/Linux 7" /etc/os-release && install_debian
-    grep -q "Debian GNU/Linux 8" /etc/os-release && install_systemd
-    grep -q "Gentoo" /etc/os-release && install_gentoo
+    if [ -r /etc/os-release ]; then
+        grep -qE "Arch Linux|Exherbo|openSUSE 13|Fedora 2|CentOS Linux 7" /etc/os-release && install_systemd
+        grep -q "Debian GNU/Linux 7" /etc/os-release && install_debian
+        grep -q "Debian GNU/Linux 8" /etc/os-release && install_systemd
+        grep -q "Gentoo" /etc/os-release && install_gentoo
+        grep -qE "Ubuntu 14.04|Ubuntu 14.10|Ubuntu precise|Precise Pangolin" /etc/os-release && install_upstart
+    fi
+    if [ -r /etc/issue ]; then
+        grep -q "CentOS release 6." /etc/issue && install_centos
+        grep -q "CentOS release 5." /etc/issue && install_centos
+    fi
     uname | grep -q FreeBSD && install_bsd
     grep -q "ALT Linux 6" /etc/altlinux-release && install_altlinux
 }
 
+set -e
 $SUDO curl --progress ${URL} --output ${BIN}
 $SUDO chmod +x ${BIN}
+set +e
 
 install_cloudinit
 
