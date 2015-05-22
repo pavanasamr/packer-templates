@@ -128,3 +128,13 @@
 	url = https://github.com/vtolstov/packer-netbsd.git
 	branch = master
 	revision = 2d3c406b73af50ed335d408838b9f15d8b5c87a5
+[module "docker"]
+	path = templates/docker
+	url = https://github.com/vtolstov/packer-docker.git
+	branch = master
+	revision = 553eb09b34e50d80c6e68d17c3a7dd286254bea9
+[module "magento"]
+	path = templates/magento
+	url = https://github.com/vtolstov/packer-magento.git
+	branch = master
+	revision = e699f6567df94e94d752816d2ab32b94c091a717
