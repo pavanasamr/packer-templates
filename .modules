@@ -132,7 +132,7 @@
 	path = templates/docker
 	url = https://github.com/vtolstov/packer-docker.git
 	branch = master
-	revision = eb8fac2db8da1cdf2c0837d3e4ff9e6a1fa2a23e
+	revision = ec0b67fd85b2376c1227b0fa1af1a17942ea2c4e
 [module "magento"]
 	path = templates/magento
 	url = https://github.com/vtolstov/packer-magento.git
