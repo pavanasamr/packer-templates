@@ -253,6 +253,118 @@ $SUDO rc-update add cloudinit
 set +e
 }
 
+install_opensuse() {
+set -e
+echo '#!/bin/bash
+#
+# cloudinit        This starts and stops xenmgm
+#
+# chkconfig: 35 11 88
+# description: This starts cloudinit
+#
+# processname: /usr/bin/cloudinit
+# config: /etc/sysconfig/cloudinit
+# pidfile: /var/run/cloudinit.pid
+#
+# Return values according to LSB for all commands but status:
+# 0 - success
+# 1 - generic or unspecified error
+# 2 - invalid or excess argument(s)
+# 3 - unimplemented feature (e.g. "reload")
+# 4 - insufficient privilege
+# 5 - program is not installed
+# 6 - program is not configured
+# 7 - program is not running
+#
+### BEGIN INIT INFO
+# Provides:       cloudinit
+# Required-Start: $remote_fs $syslog $named
+# Required-Stop:  $remote_fs $syslog
+# Should-Start: network-remotefs
+# Should-Stop: network-remotefs
+# Default-Start:  3 5
+# Default-Stop:   0 1 2 6
+# Short-Description: cloudinit
+# Description:    cloudinit
+### END INIT INFO
+
+# First reset status of this service
+. /etc/rc.status
+rc_reset
+
+
+PATH=/sbin:/bin:/usr/bin:/usr/sbin
+prog="/usr/bin/cloudinit"
+
+# Source function library.
+. /lib/lsb/init-functions
+
+# Allow anyone to run status
+if [ "$1" = "status" ] ; then
+        status $prog
+        RETVAL=$?
+        exit $RETVAL
+fi
+
+# Check that we are root ... so non-root users stop here
+test $EUID = 0  ||  exit 4
+CLOUDINIT_PID="/var/run/cloudinit.pid"
+CLOUDINIT_OPTS="-from-openstack-metadata=http://169.254.169.254/"
+
+# Check config
+test -f /etc/sysconfig/cloudinit && . /etc/sysconfig/cloudinit
+
+RETVAL=0
+
+start(){
+        test -x /usr/bin/cloudinit  || exit 5
+        echo -n "Starting $prog: "
+        startproc $prog "$CLOUDINIT_OPTS"
+        rc_status -v
+}
+
+stop(){
+        echo -n "Stopping $prog: "
+        killproc  -TERM $prog
+        rc_status -v
+}
+
+restart(){
+        stop
+        start
+}
+status() {
+    echo -n "Checking for $prog: "
+    checkproc -p ${CLOUDINIT_PID} $prog
+    rc_status -v
+}
+
+# See how we were called.
+case "$1" in
+    start)
+        start
+        ;;
+    stop)
+        stop
+        ;;
+    restart)
+        restart
+        ;;
+    status)
+        status
+        ;;
+    *)
+        echo "Usage: $0 {start|stop|status|restart}"
+        exit 1
+esac
+
+rc_exit
+' | $SUDO tee /etc/init.d/cloudinit
+$SUDO chmod +x /etc/init.d/cloudinit
+$SUDO chkconfig cloudinit on
+set +e
+}
+
 install_altlinux() {
 set -e
 echo '#!/bin/sh
@@ -352,6 +464,9 @@ install_cloudinit() {
     if [ -r /etc/issue ]; then
         grep -q "CentOS release 6." /etc/issue && install_centos
         grep -q "CentOS release 5." /etc/issue && install_centos
+        grep -qE "Ubuntu 10.04|Ubuntu 11.04|Ubuntu 11.10|Ubuntu 12.04" /etc/issue && install_upstart
+        grep -q "Debian GNU/Linux 6" /etc/issue && install_debian
+        grep -q "openSUSE 11." /etc/issue && install_opensuse
     fi
     uname | grep -q FreeBSD && install_bsd
     grep -q "ALT Linux 6" /etc/altlinux-release && install_altlinux
