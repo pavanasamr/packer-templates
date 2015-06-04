@@ -22,7 +22,7 @@
 	path = templates/fedora
 	url = https://github.com/vtolstov/packer-fedora.git
 	branch = master
-	revision = 2a5fad2189f0ffd672d5e788cb4fc04aff53d7ca
+	revision = c854364a8e056ce5b8a0089619a77994e2028f47
 [module "freebsd"]
 	path = templates/freebsd
 	url = https://github.com/vtolstov/packer-freebsd.git
