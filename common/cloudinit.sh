@@ -35,7 +35,7 @@ echo '#!/bin/bash
 #               cloudinit.
 #
 # chkconfig: - 58 74
-# description: cloudinit is the cloudinit. \
+# description: cloudinit is the cloudinit.
 
 ### BEGIN INIT INFO
 # Provides: cloudinit
@@ -257,7 +257,7 @@ install_opensuse() {
 set -e
 echo '#!/bin/bash
 #
-# cloudinit        This starts and stops xenmgm
+# cloudinit        This starts and stops cloudinit
 #
 # chkconfig: 35 11 88
 # description: This starts cloudinit
@@ -468,8 +468,10 @@ install_cloudinit() {
         grep -q "Debian GNU/Linux 6" /etc/issue && install_debian
         grep -q "openSUSE 11." /etc/issue && install_opensuse
     fi
+    if [ -r /etc/altlinux-release ]; then
+        grep -q "ALT Linux 6" /etc/altlinux-release && install_altlinux
+    fi
     uname | grep -q FreeBSD && install_bsd
-    grep -q "ALT Linux 6" /etc/altlinux-release && install_altlinux
 }
 
 set -e
