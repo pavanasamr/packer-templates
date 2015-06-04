@@ -455,7 +455,7 @@ set +e
 
 install_cloudinit() {
     if [ -r /etc/os-release ]; then
-        grep -qE "Arch Linux|Exherbo|openSUSE 13|Fedora 2|CentOS Linux 7" /etc/os-release && install_systemd
+        grep -qE "Arch Linux|Exherbo|openSUSE 12|openSUSE 13|Fedora 2|CentOS Linux 7" /etc/os-release && install_systemd
         grep -q "Debian GNU/Linux 7" /etc/os-release && install_debian
         grep -q "Debian GNU/Linux 8" /etc/os-release && install_systemd
         grep -q "Gentoo" /etc/os-release && install_gentoo
