@@ -138,3 +138,8 @@
 	url = https://github.com/vtolstov/packer-magento.git
 	branch = master
 	revision = c54e6ea695fb2f73bc62a9343c59dd243a299766
+[module "rhel"]
+	path = templates/rhel
+	url = https://github.com/vtolstov/packer-rhel.git
+	branch = master
+	revision = 8530905059b56cdbf91fcf5885051fd0ed4a9bb5

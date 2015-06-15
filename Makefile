@@ -147,7 +147,7 @@ tools:
 	@rm -f $(PWD)/bin/packer.tar.gz
 
 source:
-	@GOPATH=$(PWD)/tmp GOBIN=$(PWD)/bin/ go get -u github.com/mitchellh/gox
+	@GOPATH=$(PWD)/tmp GOBIN=$(PWD)/bin/ go get -u -f github.com/mitchellh/gox
 	@rm -rf $(PWD)/tmp/src
 	@rm -rf $(PWD)/tmp/bin/
 	@mkdir $(PWD)/tmp/bin/
