@@ -142,4 +142,4 @@
 	path = templates/rhel
 	url = https://github.com/vtolstov/packer-rhel.git
 	branch = master
-	revision = 8530905059b56cdbf91fcf5885051fd0ed4a9bb5
+	revision = 26c373b51ec317ce3a8af15f2887659d15ed4fce
