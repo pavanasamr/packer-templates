@@ -2,12 +2,12 @@
 	path = templates/exherbo
 	url = https://github.com/vtolstov/packer-exherbo.git
 	branch = master
-	revision = 61e39d1adcfa1ae3a0492023ef02af85b547f466
+	revision = 795f128adb1501267d57fbdeab582ba1d0d29634
 [module "archlinux"]
 	path = templates/archlinux
 	url = https://github.com/vtolstov/packer-archlinux.git
 	branch = master
-	revision = 260df6041697c0dc8d4b9a9c6087aab9cfe1a758
+	revision = 0f17853f70187c82e0e5cb46c743073e2694d2ee
 [module "centos"]
 	path = templates/centos
 	url = https://github.com/vtolstov/packer-centos.git
@@ -17,7 +17,7 @@
 	path = templates/debian
 	url = https://github.com/vtolstov/packer-debian.git
 	branch = master
-	revision = 81b59f76bdfebc010edeacba71b9e12bb47d30d1
+	revision = 7beaaf7dafd0d20ceadd880577fbf433d2ad6a86
 [module "fedora"]
 	path = templates/fedora
 	url = https://github.com/vtolstov/packer-fedora.git
@@ -52,12 +52,12 @@
 	path = templates/clodo
 	url = https://stash.clodo.ru/scm/cl15/packer-clodo.git
 	branch = master
-	revision = cfb486dbf5d7c438eebbbe62a7a243e87db0986f
+	revision = f522dbe651883d6b8669e72b01d135c0624f4195
 [module "mighost"]
 	path = templates/mighost
 	url = https://bitbucket.org/vtolstov/packer-mighost.git
 	branch = master
-	revision = 50aa9b8936239efa5b36a0ef5b48d487565799e7
+	revision = a208e6d118463cd0421691644ad44715dc1c31cc
 [module "clodo2"]
 	path = templates/clodo2
 	url = https://stash.clodo.ru/scm/clodo/packer-clodo2.git
