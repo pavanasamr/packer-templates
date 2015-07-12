@@ -17,7 +17,7 @@
 	path = templates/debian
 	url = https://github.com/vtolstov/packer-debian.git
 	branch = master
-	revision = 7beaaf7dafd0d20ceadd880577fbf433d2ad6a86
+	revision = 594f8727344a069bdb1038e85e9bdf700bded47d
 [module "fedora"]
 	path = templates/fedora
 	url = https://github.com/vtolstov/packer-fedora.git
@@ -57,7 +57,7 @@
 	path = templates/mighost
 	url = https://bitbucket.org/vtolstov/packer-mighost.git
 	branch = master
-	revision = a208e6d118463cd0421691644ad44715dc1c31cc
+	revision = 90323a2bd5d1a55978168460a4ae9772e6113794
 [module "clodo2"]
 	path = templates/clodo2
 	url = https://stash.clodo.ru/scm/clodo/packer-clodo2.git
