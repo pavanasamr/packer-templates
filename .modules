@@ -57,7 +57,7 @@
 	path = templates/mighost
 	url = https://bitbucket.org/vtolstov/packer-mighost.git
 	branch = master
-	revision = 90323a2bd5d1a55978168460a4ae9772e6113794
+	revision = 531276a0c163590f1da32f781e710c2b571ec13f
 [module "clodo2"]
 	path = templates/clodo2
 	url = https://stash.clodo.ru/scm/clodo/packer-clodo2.git
