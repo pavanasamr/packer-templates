@@ -5,6 +5,7 @@ DESTDIR ?= $(PWD)/images/
 MODULES ?= $(shell git config -f $(PWD)/.modules --get-regexp '^module\..*\.path$$' | sort | cut -d "/" -f2 | uniq)
 PROVISIONER ?= cloudinit
 JENKINS_URL ?=
+PATCHES ?= 2124 2608 2619 2618
 
 .PHONY : clean update install list pull push commit modules ci
 
@@ -147,18 +148,22 @@ tools:
 	@rm -f $(PWD)/bin/packer.tar.gz
 
 source:
-	@GOPATH=$(PWD)/tmp GOBIN=$(PWD)/bin/ go get -u -f github.com/mitchellh/gox
-	@rm -rf $(PWD)/tmp/src
-	@rm -rf $(PWD)/tmp/bin/
-	@mkdir $(PWD)/tmp/bin/
+	@rm -rf $(PWD)/bin/*
+	@rm -rf $(PWD)/tmp/*
+	@mkdir -p $(PWD)/bin/
 	@mkdir -p $(PWD)/tmp/src/github.com/mitchellh/
-	@test -d $(PWD)/tmp/src/github.com/mitchellh/packer || git clone git@github.com:mitchellh/packer.git $(PWD)/tmp/src/github.com/mitchellh/packer
-	@test -d $(PWD)/tmp/src/github.com/mitchellh/packer && bash -c "cd $(PWD)/tmp/src/github.com/mitchellh/packer; git pull; "
-	@bash -c "cd $(PWD)/tmp/src/github.com/mitchellh/packer; curl -Ls https://github.com/mitchellh/packer/pull/2124.diff | patch -p1"
-	@GOPATH=$(PWD)/tmp GOBIN=$(PWD)/bin/ make -C $(PWD)/tmp/src/github.com/mitchellh/packer dev || :
-	@mv $(PWD)/tmp/src/github.com/mitchellh/packer/bin/{packer,packer-builder-digitalocean,packer-builder-null,packer-builder-qemu,packer-provisioner-chef-client,packer-provisioner-chef-solo,packer-provisioner-file,packer-provisioner-shell,packer-post-processor-artifice} $(PWD)/bin/
+	@test -d $(PWD)/tmp/src/github.com/mitchellh/packer || git clone https://github.com/mitchellh/packer.git $(PWD)/tmp/src/github.com/mitchellh/packer
+	@for p in $(PATCHES); \
+	do \
+		pushd $(PWD)/tmp/src/github.com/mitchellh/packer >/dev/null; \
+		curl -Ls https://github.com/mitchellh/packer/pull/$${p}.patch | patch -p1 ; \
+	done
+	@bash -c "cd $(PWD)/tmp/src/github.com/mitchellh/packer ; patch -p1 < $(PWD)/patch;"
+	@bash -c "export GOPATH=$(PWD)/tmp; export GOBIN=$(PWD)/bin/ CGO_ENABLED=0; cd $(PWD)/tmp/src/github.com/mitchellh/packer; go get -f -u && go build -a -installsuffix cgo -o $(PWD)/bin/packer ; "
 	GOPATH=$(PWD)/tmp GOBIN=$(PWD)/bin/ go get -f -u github.com/vtolstov/packer-post-processor-compress
+	@bash -c "export GOPATH=$(PWD)/tmp GOBIN=$(PWD)/bin/ CGO_ENABLED=0; cd $(PWD)/tmp/src/github.com/vtolstov/packer-post-processor-compress; CGO_ENABLED=0 go build -a -installsuffix cgo -o $(PWD)/bin/packer-post-processor-compress ; "
 	GOPATH=$(PWD)/tmp GOBIN=$(PWD)/bin/ go get -f -u github.com/vtolstov/packer-post-processor-checksum
-	GOPATH=$(PWD)/tmp GOBIN=$(PWD)/bin/ go get -f -u selfip.ru/vtolstov/packer-post-processor-upload || true
-	GOPATH=$(PWD)/tmp GOBIN=$(PWD)/bin/ go get -f -u github.com/vtolstov/packer-builder-libvirt || true
-	@bash -c "tar -zcf $(PWD)/tmp/packer.tar.gz -C $(PWD)/bin/ {packer,packer-builder-digitalocean,packer-builder-libvirt,packer-builder-null,packer-builder-qemu,packer-post-processor-checksum,packer-post-processor-compress,packer-post-processor-upload,packer-provisioner-chef-client,packer-provisioner-chef-solo,packer-provisioner-file,packer-provisioner-shell,packer-post-processor-artifice}"
+	@bash -c "export GOPATH=$(PWD)/tmp GOBIN=$(PWD)/bin/ CGO_ENABLED=0; cd $(PWD)/tmp/src/github.com/vtolstov/packer-post-processor-checksum; CGO_ENABLED=0 go build -a -installsuffix cgo -o $(PWD)/bin/packer-post-processor-checksum ; "
+#	GOPATH=$(PWD)/tmp GOBIN=$(PWD)/bin/ go get -f -u selfip.ru/vtolstov/packer-post-processor-upload || true
+#	GOPATH=$(PWD)/tmp GOBIN=$(PWD)/bin/ go get -f -u github.com/vtolstov/packer-builder-libvirt || true
+	@bash -c "tar -zcf $(PWD)/tmp/packer.tar.gz -C $(PWD)/bin/ ."
