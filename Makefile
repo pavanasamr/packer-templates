@@ -143,7 +143,7 @@ tools:
 	@mkdir -p $(PWD)/tmp $(PWD)/bin
 	@echo Install packer
 	@rm -rf $(PWD)/bin/*
-	@wget --no-check-certificate -q -c http://bb.selfip.ru/packer.tar.gz -O $(PWD)/bin/packer.tar.gz
+	@wget --no-check-certificate -q -c http://cdn.selfip.ru/public/packer.tar.gz -O $(PWD)/bin/packer.tar.gz
 	@tar -zxf $(PWD)/bin/packer.tar.gz -C $(PWD)/bin/
 	@rm -f $(PWD)/bin/packer.tar.gz
 
@@ -158,7 +158,6 @@ source:
 		pushd $(PWD)/tmp/src/github.com/mitchellh/packer >/dev/null; \
 		curl -Ls https://github.com/mitchellh/packer/pull/$${p}.patch | patch -p1 ; \
 	done
-	@bash -c "cd $(PWD)/tmp/src/github.com/mitchellh/packer ; patch -p1 < $(PWD)/patch;"
 	@bash -c "export GOPATH=$(PWD)/tmp; export GOBIN=$(PWD)/bin/ CGO_ENABLED=0; cd $(PWD)/tmp/src/github.com/mitchellh/packer; go get -f -u && go build -a -installsuffix cgo -o $(PWD)/bin/packer ; "
 	GOPATH=$(PWD)/tmp GOBIN=$(PWD)/bin/ go get -f -u github.com/vtolstov/packer-post-processor-compress
 	@bash -c "export GOPATH=$(PWD)/tmp GOBIN=$(PWD)/bin/ CGO_ENABLED=0; cd $(PWD)/tmp/src/github.com/vtolstov/packer-post-processor-compress; CGO_ENABLED=0 go build -a -installsuffix cgo -o $(PWD)/bin/packer-post-processor-compress ; "
