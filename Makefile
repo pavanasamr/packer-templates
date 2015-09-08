@@ -5,7 +5,7 @@ DESTDIR ?= $(PWD)/images/
 MODULES ?= $(shell git config -f $(PWD)/.modules --get-regexp '^module\..*\.path$$' | sort | cut -d "/" -f2 | uniq)
 PROVISIONER ?= cloudinit
 JENKINS_URL ?=
-PATCHES ?= 2124 2608 2619 2618
+PATCHES ?= 2124 2422 2608 2618 2718
 
 .PHONY : clean update install list pull push commit modules ci
 
