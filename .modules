@@ -93,11 +93,6 @@
 	url = https://github.com/vtolstov/packer-joomla.git
 	branch = master
 	revision = a9ed2a0844ec11e0211f2a54af9bf3a5885b145e
-[module "bitrixenv"]
-	path = templates/bitrixenv
-	url = https://github.com/vtolstov/packer-bitrixenv.git
-	branch = master
-	revision = 56930768bfbcdeb9e1be6f34d647c50e12bf3f89
 [module "drupal"]
 	path = templates/drupal
 	url = https://github.com/vtolstov/packer-drupal.git
@@ -108,16 +103,6 @@
 	url = https://github.com/vtolstov/packer-ajenti.git
 	branch = master
 	revision = ef54e2949fe9c8220bf64f87c652a997ff56a4fc
-[module "lamp"]
-	path = templates/lamp
-	url = https://github.com/vtolstov/packer-lamp.git
-	branch = master
-	revision = 58e2b0e3311ccb47b9325f6218df33f34ee88aed
-[module "django"]
-	path = templates/django
-	url = https://github.com/vtolstov/packer-django.git
-	branch = master
-	revision = 86a632cb6672e88ac7a434efe38cfd1142352cd6
 [module "gitlab"]
 	path = templates/gitlab
 	url = https://github.com/vtolstov/packer-gitlab.git
@@ -128,18 +113,8 @@
 	url = https://github.com/vtolstov/packer-netbsd.git
 	branch = master
 	revision = d23e2cbe2231ea7217dd10d9476f1beefc7cc877
-[module "docker"]
-	path = templates/docker
-	url = https://github.com/vtolstov/packer-docker.git
-	branch = master
-	revision = 66e860a41ee457333c0045494946fe256710ae79
 [module "magento"]
 	path = templates/magento
 	url = https://github.com/vtolstov/packer-magento.git
 	branch = master
 	revision = c54e6ea695fb2f73bc62a9343c59dd243a299766
-[module "rhel"]
-	path = templates/rhel
-	url = https://github.com/vtolstov/packer-rhel.git
-	branch = master
-	revision = 26c373b51ec317ce3a8af15f2887659d15ed4fce

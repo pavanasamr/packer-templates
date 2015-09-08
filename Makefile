@@ -5,7 +5,7 @@ DESTDIR ?= $(PWD)/images/
 MODULES ?= $(shell git config -f $(PWD)/.modules --get-regexp '^module\..*\.path$$' | sort | cut -d "/" -f2 | uniq)
 PROVISIONER ?= cloudinit
 JENKINS_URL ?=
-PATCHES ?= 2124 2422 2608 2618 2718
+PATCHES ?= 2422 2608 2618 2718 2719
 
 .PHONY : clean update install list pull push commit modules ci
 
@@ -151,18 +151,18 @@ source:
 	@rm -rf $(PWD)/bin/*
 	@rm -rf $(PWD)/tmp/*
 	@mkdir -p $(PWD)/bin/
-	@mkdir -p $(PWD)/tmp/src/github.com/mitchellh/
-	@test -d $(PWD)/tmp/src/github.com/mitchellh/packer || git clone https://github.com/mitchellh/packer.git $(PWD)/tmp/src/github.com/mitchellh/packer
+	GOPATH=$(PWD)/tmp GOBIN=$(PWD)/bin/ go get -d github.com/mitchellh/packer/...
 	@for p in $(PATCHES); \
 	do \
+		echo "merge pr $${p}"; \
 		pushd $(PWD)/tmp/src/github.com/mitchellh/packer >/dev/null; \
-		curl -Ls https://github.com/mitchellh/packer/pull/$${p}.patch | patch -p1 ; \
+		curl -Ls https://github.com/mitchellh/packer/pull/$${p}.patch | patch -p1 >/dev/null || exit 1; \
 	done
-	@bash -c "export GOPATH=$(PWD)/tmp; export GOBIN=$(PWD)/bin/ CGO_ENABLED=0; cd $(PWD)/tmp/src/github.com/mitchellh/packer; go get -f -u && go build -a -installsuffix cgo -o $(PWD)/bin/packer ; "
-	GOPATH=$(PWD)/tmp GOBIN=$(PWD)/bin/ go get -f -u github.com/vtolstov/packer-post-processor-compress
-	@bash -c "export GOPATH=$(PWD)/tmp GOBIN=$(PWD)/bin/ CGO_ENABLED=0; cd $(PWD)/tmp/src/github.com/vtolstov/packer-post-processor-compress; CGO_ENABLED=0 go build -a -installsuffix cgo -o $(PWD)/bin/packer-post-processor-compress ; "
-	GOPATH=$(PWD)/tmp GOBIN=$(PWD)/bin/ go get -f -u github.com/vtolstov/packer-post-processor-checksum
-	@bash -c "export GOPATH=$(PWD)/tmp GOBIN=$(PWD)/bin/ CGO_ENABLED=0; cd $(PWD)/tmp/src/github.com/vtolstov/packer-post-processor-checksum; CGO_ENABLED=0 go build -a -installsuffix cgo -o $(PWD)/bin/packer-post-processor-checksum ; "
+	GOPATH=$(PWD)/tmp GOBIN=$(PWD)/bin/ CGO_ENABLED=0 GO15VENDOREXPERIMENT=1 go build -v -o $(PWD)/bin/packer github.com/mitchellh/packer
+	GOPATH=$(PWD)/tmp GOBIN=$(PWD)/bin/ go get -d github.com/vtolstov/packer-post-processor-compress
+	GOPATH=$(PWD)/tmp GOBIN=$(PWD)/bin/ CGO_ENABLED=0 GO15VENDOREXPERIMENT=1 go build -v -o $(PWD)/bin/packer-post-processor-compress github.com/vtolstov/packer-post-processor-compress
+	GOPATH=$(PWD)/tmp GOBIN=$(PWD)/bin/ go get -d github.com/vtolstov/packer-post-processor-checksum
+	GOPATH=$(PWD)/tmp GOBIN=$(PWD)/bin/ CGO_ENABLED=0 GO15VENDOREXPERIMENT=1 go build -v -o $(PWD)/bin/packer-post-processor-checksum github.com/vtolstov/packer-post-processor-checksum
 #	GOPATH=$(PWD)/tmp GOBIN=$(PWD)/bin/ go get -f -u selfip.ru/vtolstov/packer-post-processor-upload || true
 #	GOPATH=$(PWD)/tmp GOBIN=$(PWD)/bin/ go get -f -u github.com/vtolstov/packer-builder-libvirt || true
 	@bash -c "tar -zcf $(PWD)/tmp/packer.tar.gz -C $(PWD)/bin/ ."
