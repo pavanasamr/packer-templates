@@ -7,6 +7,8 @@ PROVISIONER ?= cloudinit
 JENKINS_URL ?=
 PATCHES ?= 2608 2618 2706 2718 2744 2748 2815
 
+-include $(PWD)/Makefile.local
+
 .PHONY : clean update install list pull push commit modules ci
 
 all: tools update
