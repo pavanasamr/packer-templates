@@ -118,3 +118,7 @@
 	url = https://github.com/vtolstov/packer-magento.git
 	branch = master
 	revision = c54e6ea695fb2f73bc62a9343c59dd243a299766
+[module "virtuozzo"]
+	path = templates/virtuozzo
+	url = https://github.com/vtolstov/packer-virtuozzo.git
+	branch = master
