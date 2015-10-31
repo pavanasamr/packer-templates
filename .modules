@@ -122,3 +122,4 @@
 	path = templates/virtuozzo
 	url = https://github.com/vtolstov/packer-virtuozzo.git
 	branch = master
+	revision = 6cc8a2211346759d9788031f812f1f5cd8ff2c00
