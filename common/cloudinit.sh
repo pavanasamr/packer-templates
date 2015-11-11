@@ -1,5 +1,6 @@
 #!/bin/sh -x
 
+sleep 600
 URL="http://cdn.selfip.ru/public/cloudinit"
 ARCH="x86_32"
 SUDO="$(which sudo)"
@@ -24,6 +25,9 @@ case "$(uname)" in
         BIN="/usr/local/bin/cloudinit"
         URL="${URL}-openbsd-${ARCH}"
         ;;
+    "NetBSD")
+        BIN="/usr/pkg/bin/cloudinit"
+        URL="${URL}-netbsd-${ARCH}"
 esac
 
 
@@ -474,9 +478,9 @@ install_cloudinit() {
     uname | grep -q FreeBSD && install_bsd
 }
 
-sysctl -w net.ipv6.conf.default.accept_ra=0
-sysctl -w net.ipv6.conf.all.accept_ra=0
-sysctl -w net.ipv6.conf.eth0.accept_ra=0
+which sysctl && sysctl -w net.ipv6.conf.default.accept_ra=0
+which sysctl && sysctl -w net.ipv6.conf.all.accept_ra=0
+which sysctl && sysctl -w net.ipv6.conf.eth0.accept_ra=0
 
 for a in $(ifconfig eth0 | grep inet6 |  awk '{print $2"/"$4}'); do
     ifconfig eth0 inet6 del $a
