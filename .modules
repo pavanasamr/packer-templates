@@ -2,7 +2,7 @@
 	path = templates/exherbo
 	url = https://github.com/vtolstov/packer-exherbo.git
 	branch = master
-	revision = 795f128adb1501267d57fbdeab582ba1d0d29634
+	revision = 9c7c15a5c3158333dba152dfe6ad10afdaffc835
 [module "archlinux"]
 	path = templates/archlinux
 	url = https://github.com/vtolstov/packer-archlinux.git
@@ -22,7 +22,7 @@
 	path = templates/fedora
 	url = https://github.com/vtolstov/packer-fedora.git
 	branch = master
-	revision = 125ea049eef71b474f6e7ca0b7906026e13cd12f
+	revision = 7d6e993bc8df2f3502911e0318346835de50c288
 [module "freebsd"]
 	path = templates/freebsd
 	url = https://github.com/vtolstov/packer-freebsd.git
@@ -42,17 +42,17 @@
 	path = templates/opensuse
 	url = https://github.com/vtolstov/packer-opensuse.git
 	branch = master
-	revision = 794556b2c762b8ef12c38192061ecf0026b9c746
+	revision = f8fcdfb6e9db9cd62ca34154d5888458e8bc687a
 [module "ubuntu"]
 	path = templates/ubuntu
 	url = https://github.com/vtolstov/packer-ubuntu.git
 	branch = master
-	revision = 17fb240e1219a69a411d15ad1a3f9b4973e7cccf
+	revision = ad1508489dcb812febde9be73e39b69823fa9787
 [module "clodo"]
 	path = templates/clodo
 	url = https://stash.clodo.ru/scm/cl15/packer-clodo.git
 	branch = master
-	revision = 8624bc100f1addb94c1f83d864d12d63b3f01cdb
+	revision = 6855069450e1bffe181f497462851fd112381ca5
 [module "mighost"]
 	path = templates/mighost
 	url = https://bitbucket.org/vtolstov/packer-mighost.git
@@ -62,7 +62,7 @@
 	path = templates/clodo2
 	url = https://stash.clodo.ru/scm/clodo/packer-clodo2.git
 	branch = master
-	revision = a393e0fca1b2af1bd23f35af279b4d30583699d1
+	revision = 41f9ee85f9dbd379b8f0132bb81d5a1b4d03ed5a
 [module "coreos"]
 	path = templates/coreos
 	url = https://github.com/vtolstov/packer-coreos.git
@@ -82,7 +82,7 @@
 	path = templates/openbsd
 	url = https://github.com/vtolstov/packer-openbsd.git
 	branch = master
-	revision = cdffb4646296b139d0bbaa37fb57dd8b664f754d
+	revision = 7db8a548cfca743bd1837e3b6643f575d69acf59
 [module "wordpress"]
 	path = templates/wordpress
 	url = https://github.com/vtolstov/packer-wordpress.git
@@ -112,7 +112,7 @@
 	path = templates/netbsd
 	url = https://github.com/vtolstov/packer-netbsd.git
 	branch = master
-	revision = d23e2cbe2231ea7217dd10d9476f1beefc7cc877
+	revision = 9329b503e61e5e43fa1fd6bbc7f29952a8230afb
 [module "magento"]
 	path = templates/magento
 	url = https://github.com/vtolstov/packer-magento.git

@@ -5,8 +5,8 @@ DESTDIR ?= $(PWD)/images/
 MODULES ?= $(shell git config -f $(PWD)/.modules --get-regexp '^module\..*\.path$$' | sort | cut -d "/" -f2 | uniq)
 PROVISIONER ?= cloudinit
 JENKINS_URL ?=
-PATCHES ?= 2618 2706 2744 2815
-
+PATCHES ?= 2618 2744 2815
+#2706
 -include $(PWD)/Makefile.local
 
 .PHONY : clean update install list pull push commit modules ci
@@ -158,10 +158,10 @@ source:
 	do \
 		echo "merge pr $${p}"; \
 		pushd $(PWD)/tmp/src/github.com/mitchellh/packer >/dev/null; \
-		curl -Ls https://github.com/mitchellh/packer/pull/$${p}.patch | patch -p1 >/dev/null ; \
+		curl -Ls https://github.com/mitchellh/packer/pull/$${p}.patch | patch -p1  || exit 1; \
 		popd >/dev/null ;\
 	done
-	GOPATH=$(PWD)/tmp GOBIN=$(PWD)/bin/ CGO_ENABLED=0 GO15VENDOREXPERIMENT=1 go build -v -o $(PWD)/bin/packer github.com/mitchellh/packer
+	GOPATH=$(PWD)/tmp GOBIN=$(PWD)/bin/ CGO_ENABLED=0 GO15VENDOREXPERIMENT=1 go build -v -o $(PWD)/bin/packer github.com/mitchellh/packer || exit 1
 	GOPATH=$(PWD)/tmp GOBIN=$(PWD)/bin/ go get -d github.com/vtolstov/packer-post-processor-compress
 	GOPATH=$(PWD)/tmp GOBIN=$(PWD)/bin/ CGO_ENABLED=0 GO15VENDOREXPERIMENT=1 go build -v -o $(PWD)/bin/packer-post-processor-compress github.com/vtolstov/packer-post-processor-compress
 	GOPATH=$(PWD)/tmp GOBIN=$(PWD)/bin/ go get -d github.com/vtolstov/packer-post-processor-checksum
