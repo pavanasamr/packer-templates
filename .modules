@@ -127,4 +127,4 @@
 	path = templates/windows
 	url = https://github.com/vtolstov/packer-windows.git
 	branch = master
-	revision = 1db6d1b601169fe2d2eb299c35b25a50eba1f022
+	revision = 3bee32ca62e50231ed812a607d3a7b48b8f5e040
