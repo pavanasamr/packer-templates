@@ -123,3 +123,8 @@
 	url = https://github.com/vtolstov/packer-virtuozzo.git
 	branch = master
 	revision = 6cc8a2211346759d9788031f812f1f5cd8ff2c00
+[module "windows"]
+	path = templates/windows
+	url = https://github.com/vtolstov/packer-windows.git
+	branch = master
+	revision = 1db6d1b601169fe2d2eb299c35b25a50eba1f022
