@@ -1,76 +1,66 @@
 [module "exherbo"]
 	path = templates/exherbo
-	url = https://github.com/vtolstov/packer-exherbo.git
+	url = https://github.com/yoctocloud/packer-exherbo.git
 	branch = master
 	revision = 9c7c15a5c3158333dba152dfe6ad10afdaffc835
 [module "archlinux"]
 	path = templates/archlinux
-	url = https://github.com/vtolstov/packer-archlinux.git
+	url = https://github.com/yoctocloud/packer-archlinux.git
 	branch = master
 	revision = 0f17853f70187c82e0e5cb46c743073e2694d2ee
 [module "centos"]
 	path = templates/centos
-	url = https://github.com/vtolstov/packer-centos.git
+	url = https://github.com/yoctocloud/packer-centos.git
 	branch = master
 	revision = ae8ba0a93e681eb9c58da54f3d307f548d0bc5fd
 [module "debian"]
 	path = templates/debian
-	url = https://github.com/vtolstov/packer-debian.git
+	url = https://github.com/yoctocloud/packer-debian.git
 	branch = master
 	revision = 3fa8dbb3214c5505afb631428bb2043ac70baf50
 [module "fedora"]
 	path = templates/fedora
-	url = https://github.com/vtolstov/packer-fedora.git
+	url = https://github.com/yoctocloud/packer-fedora.git
 	branch = master
 	revision = 7d6e993bc8df2f3502911e0318346835de50c288
 [module "freebsd"]
 	path = templates/freebsd
-	url = https://github.com/vtolstov/packer-freebsd.git
+	url = https://github.com/yoctocloud/packer-freebsd.git
 	branch = master
 	revision = 01f207e4bd13d0a3c235ccb02440bbc7de172bb4
 [module "freepbx"]
 	path = templates/freepbx
-	url = https://github.com/vtolstov/packer-freepbx.git
+	url = https://github.com/yoctocloud/packer-freepbx.git
 	branch = master
 	revision = 5c952b500bee32cd9c0c7ff5570bc8a41bac5d45
 [module "gentoo"]
 	path = templates/gentoo
-	url = https://github.com/vtolstov/packer-gentoo.git
+	url = https://github.com/yoctocloud/packer-gentoo.git
 	branch = master
 	revision = ea40ba3bc674590e9113511e62a60281a9982b8c
 [module "opensuse"]
 	path = templates/opensuse
-	url = https://github.com/vtolstov/packer-opensuse.git
+	url = https://github.com/yoctocloud/packer-opensuse.git
 	branch = master
 	revision = f8fcdfb6e9db9cd62ca34154d5888458e8bc687a
 [module "ubuntu"]
 	path = templates/ubuntu
-	url = https://github.com/vtolstov/packer-ubuntu.git
+	url = https://github.com/yoctocloud/packer-ubuntu.git
 	branch = master
 	revision = ad1508489dcb812febde9be73e39b69823fa9787
-[module "clodo"]
-	path = templates/clodo
-	url = https://stash.clodo.ru/scm/cl15/packer-clodo.git
-	branch = master
-	revision = 6855069450e1bffe181f497462851fd112381ca5
-[module "mighost"]
-	path = templates/mighost
-	url = https://bitbucket.org/vtolstov/packer-mighost.git
+[module "yoctocloud"]
+	path = templates/yoctocloud
+	url = https://bitbucket.org/vtolstov/packer-yoctocloud.git
 	branch = master
 	revision = 531276a0c163590f1da32f781e710c2b571ec13f
-[module "clodo2"]
-	path = templates/clodo2
-	url = https://stash.clodo.ru/scm/clodo/packer-clodo2.git
-	branch = master
-	revision = 41f9ee85f9dbd379b8f0132bb81d5a1b4d03ed5a
 [module "coreos"]
 	path = templates/coreos
-	url = https://github.com/vtolstov/packer-coreos.git
+	url = https://github.com/yoctocloud/packer-coreos.git
 	branch = master
 	revision = 2787f94d9e11de028f82a6b370cb62e4b173b4a4
 [module "altlinux"]
 	path = templates/altlinux
-	url = https://github.com/vtolstov/packer-altlinux.git
+	url = https://github.com/yoctocloud/packer-altlinux.git
 	branch = master
 	revision = c4322501042a10a56df113ccf1d05600135704da
 [module "altlinuxspt"]
@@ -78,53 +68,27 @@
 	url = https://bitbucket.org/vtolstov/packer-altlinuxspt.git
 	branch = master
 	revision = 0a4c936d699bf22035ed54430016b6b4d00711cb
+[module "astralinux"]
+	path = templates/astralinux
+	url = https://github.com/yoctocloud/packer-astralinux.git
+	branch = master
 [module "openbsd"]
 	path = templates/openbsd
-	url = https://github.com/vtolstov/packer-openbsd.git
+	url = https://github.com/yoctocloud/packer-openbsd.git
 	branch = master
 	revision = 7db8a548cfca743bd1837e3b6643f575d69acf59
-[module "wordpress"]
-	path = templates/wordpress
-	url = https://github.com/vtolstov/packer-wordpress.git
-	branch = master
-	revision = 5d3d8548216319733afa32d47eacc0440f9200f1
-[module "joomla"]
-	path = templates/joomla
-	url = https://github.com/vtolstov/packer-joomla.git
-	branch = master
-	revision = a9ed2a0844ec11e0211f2a54af9bf3a5885b145e
-[module "drupal"]
-	path = templates/drupal
-	url = https://github.com/vtolstov/packer-drupal.git
-	branch = master
-	revision = 2a0d6ffc5b8c7a1aebc7bcb02c484108f80bf143
-[module "ajenti"]
-	path = templates/ajenti
-	url = https://github.com/vtolstov/packer-ajenti.git
-	branch = master
-	revision = ef54e2949fe9c8220bf64f87c652a997ff56a4fc
-[module "gitlab"]
-	path = templates/gitlab
-	url = https://github.com/vtolstov/packer-gitlab.git
-	branch = master
-	revision = 32857408ddd0fcbf8bc9fa483cf820ca522b44ec
 [module "netbsd"]
 	path = templates/netbsd
-	url = https://github.com/vtolstov/packer-netbsd.git
+	url = https://github.com/yoctocloud/packer-netbsd.git
 	branch = master
 	revision = 9329b503e61e5e43fa1fd6bbc7f29952a8230afb
-[module "magento"]
-	path = templates/magento
-	url = https://github.com/vtolstov/packer-magento.git
-	branch = master
-	revision = c54e6ea695fb2f73bc62a9343c59dd243a299766
 [module "virtuozzo"]
 	path = templates/virtuozzo
-	url = https://github.com/vtolstov/packer-virtuozzo.git
+	url = https://github.com/yoctocloud/packer-virtuozzo.git
 	branch = master
 	revision = 6cc8a2211346759d9788031f812f1f5cd8ff2c00
 [module "windows"]
 	path = templates/windows
-	url = https://github.com/vtolstov/packer-windows.git
+	url = https://github.com/yoctocloud/packer-windows.git
 	branch = master
 	revision = 3bee32ca62e50231ed812a607d3a7b48b8f5e040

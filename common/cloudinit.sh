@@ -1,6 +1,5 @@
 #!/bin/sh -x
 
-sleep 600
 URL="http://cdn.selfip.ru/public/cloudinit"
 ARCH="x86_32"
 SUDO="$(which sudo)"
