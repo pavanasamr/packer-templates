@@ -50,7 +50,7 @@
 	revision = ad1508489dcb812febde9be73e39b69823fa9787
 [module "yoctocloud"]
 	path = templates/yoctocloud
-	url = https://bitbucket.org/vtolstov/packer-yoctocloud.git
+	url = https://git.selfip.ru/yoctocloud/packer-yoctocloud.git
 	branch = master
 	revision = 531276a0c163590f1da32f781e710c2b571ec13f
 [module "coreos"]
