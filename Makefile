@@ -5,7 +5,7 @@ DESTDIR ?= $(PWD)/images/
 MODULES ?= $(shell git config -f $(PWD)/.modules --get-regexp '^module\..*\.path$$' | sort | cut -d "/" -f2 | uniq)
 PROVISIONER ?= cloudinit
 JENKINS_URL ?=
-PATCHES ?= 2618 2744 2815 3129 3139
+PATCHES ?= 2618 2744 2815
 
 -include $(PWD)/Makefile.local
 
