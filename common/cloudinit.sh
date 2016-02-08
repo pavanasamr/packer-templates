@@ -13,7 +13,7 @@ esac
 
 case "$(uname)" in
     "Linux")
-        BIN="/usr/bin/cloudinit"
+        BIN="/opt/bin/cloudinit"
         URL="${URL}-linux-${ARCH}"
         ;;
     "FreeBSD")
@@ -62,7 +62,7 @@ lockfile=/var/lock/subsys/$prog
 start() {
         [ "$EUID" != "0" ] && exit 4
         [ "$NETWORKING" = "no" ] && exit 1
-        [ -x /usr/bin/cloudinit ] || exit 5
+        [ -x /opt/bin/cloudinit ] || exit 5
 
         # Start daemons.
         echo -n $"Starting $prog: "
@@ -134,7 +134,7 @@ PATH=/sbin:/bin:/usr/sbin:/usr/bin
 
 . /lib/lsb/init-functions
 
-DAEMON=/usr/bin/cloudinit
+DAEMON=/opt/bin/cloudinit
 PIDFILE=/var/run/cloudinit.pid
 
 test -x $DAEMON || exit 5
@@ -214,7 +214,7 @@ start on (local-filesystems and net-device-up IFACE!=lo)
 
 console log
 
-exec /usr/bin/cloudinit -from-openstack-metadata=http://169.254.169.254/
+exec /opt/bin/cloudinit -from-openstack-metadata=http://169.254.169.254/
 ' | $SUDO tee /etc/init/cloudinit.conf
 set +e
 }
@@ -227,7 +227,7 @@ After=network.target
 
 [Service]
 Type=oneshot
-ExecStart=/usr/bin/cloudinit -from-openstack-metadata=http://169.254.169.254/
+ExecStart=/opt/bin/cloudinit -from-openstack-metadata=http://169.254.169.254/
 RemainAfterExit=yes
 
 [Install]
@@ -241,7 +241,7 @@ install_gentoo() {
 set -e
 echo '#!/sbin/runscript
 
-command="/usr/bin/cloudinit"
+command="/opt/bin/cloudinit"
 command_args="-from-openstack-metadata=http://169.254.169.254/"
 pidfile="/var/run/cloudinit.pid"
 
@@ -265,7 +265,7 @@ echo '#!/bin/bash
 # chkconfig: 35 11 88
 # description: This starts cloudinit
 #
-# processname: /usr/bin/cloudinit
+# processname: /opt/bin/cloudinit
 # config: /etc/sysconfig/cloudinit
 # pidfile: /var/run/cloudinit.pid
 #
@@ -297,7 +297,7 @@ rc_reset
 
 
 PATH=/sbin:/bin:/usr/bin:/usr/sbin
-prog="/usr/bin/cloudinit"
+prog="/opt/bin/cloudinit"
 
 # Source function library.
 . /lib/lsb/init-functions
@@ -320,7 +320,7 @@ test -f /etc/sysconfig/cloudinit && . /etc/sysconfig/cloudinit
 RETVAL=0
 
 start(){
-        test -x /usr/bin/cloudinit  || exit 5
+        test -x $prog  || exit 5
         echo -n "Starting $prog: "
         startproc $prog "$CLOUDINIT_OPTS"
         rc_status -v
@@ -392,7 +392,7 @@ WITHOUT_RC_COMPAT=1
 
 # Source function library.
 . /etc/init.d/functions
-PROG=/usr/bin/cloudinit
+PROG=/opt/bin/cloudinit
 PIDFILE=/var/run/cloudinit.pid
 LOCKFILE=/var/lock/subsys/cloudinit
 RETVAL=0
@@ -494,6 +494,7 @@ options timeout:2 attempts:1 rotate
 EOF
 
 set -e
+mkdir -p $(dirname ${BIN})
 $SUDO curl --progress ${URL} --output ${BIN}
 $SUDO chmod +x ${BIN}
 set +e
