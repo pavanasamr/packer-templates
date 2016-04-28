@@ -5,7 +5,8 @@ DESTDIR ?= $(PWD)/images/
 MODULES ?= $(shell git config -f $(PWD)/.modules --get-regexp '^module\..*\.path$$' | sort | cut -d "/" -f2 | uniq)
 PROVISIONER ?= cloudinit
 JENKINS_URL ?=
-PATCHES ?= 2618 2815 3162
+PATCHES ?= 2815 3177 3368
+POST_PROCESSORS ?=
 
 -include $(PWD)/Makefile.local
 
@@ -23,7 +24,7 @@ build:
 	$(eval TPL := $(filter-out $@,$(MAKECMDGOALS)))
 	$(eval MAKECMDGOALS := $(TPL))
 	$(eval OS := $(firstword $(subst -, , $(TPL))))
-	$(MAKE) --quiet pull $(OS)
+#	$(MAKE) --quiet pull $(OS)
 	$(MAKE) -C $(PWD)/templates/$(OS) build $(TPL) PROVISIONER=$(PROVISIONER)
 
 pull:
@@ -152,16 +153,21 @@ tools:
 source:
 	@rm -rf $(PWD)/bin/*
 	@rm -rf $(PWD)/tmp/*
-	@mkdir -p $(PWD)/bin/
-	GOPATH=$(PWD)/tmp GOBIN=$(PWD)/bin/ go get -d github.com/mitchellh/packer/...
+	@mkdir -p $(PWD)/bin/ $(PWD)/tmp/src/github.com/mitchellh/packer/
+	@git clone https://github.com/mitchellh/packer/ $(PWD)/tmp/src/github.com/mitchellh/packer ; \
+	patch -d $(PWD)/tmp/src/github.com/mitchellh/packer/ -p1 < get.patch ;\
+	GOPATH=$(PWD)/tmp GOBIN=$(PWD)/bin/ go get gopkg.in/src-d/go-git.v3 ;\
+	pushd $(PWD)/tmp/src/github.com/mitchellh/packer/; \
+	make deps; \
+	popd;
 	@for p in $(PATCHES); \
 	do \
 		echo "merge pr $${p}"; \
 		pushd $(PWD)/tmp/src/github.com/mitchellh/packer >/dev/null; \
-		curl -Ls https://github.com/mitchellh/packer/pull/$${p}.patch | patch -p1  || exit 1; \
+		curl -Ls https://github.com/mitchellh/packer/pull/$${p}.patch | patch -p1  || "exit 1"; \
 		popd >/dev/null ;\
 	done
-	GOPATH=$(PWD)/tmp GOBIN=$(PWD)/bin/ CGO_ENABLED=0 GO15VENDOREXPERIMENT=1 go build -v -o $(PWD)/bin/packer github.com/mitchellh/packer || exit 1
+	GOPATH=$(PWD)/tmp GOBIN=$(PWD)/bin/ CGO_ENABLED=0 go build -v -o $(PWD)/bin/packer github.com/mitchellh/packer || exit 1
 	GOPATH=$(PWD)/tmp GOBIN=$(PWD)/bin/ go get -d github.com/vtolstov/packer-post-processor-compress
 	GOPATH=$(PWD)/tmp GOBIN=$(PWD)/bin/ CGO_ENABLED=0 GO15VENDOREXPERIMENT=1 go build -v -o $(PWD)/bin/packer-post-processor-compress github.com/vtolstov/packer-post-processor-compress
 	GOPATH=$(PWD)/tmp GOBIN=$(PWD)/bin/ go get -d github.com/vtolstov/packer-post-processor-checksum

@@ -63,11 +63,10 @@
 	url = https://github.com/yoctocloud/packer-altlinux.git
 	branch = master
 	revision = c4322501042a10a56df113ccf1d05600135704da
-[module "altlinuxspt"]
-	path = templates/altlinuxspt
-	url = https://bitbucket.org/vtolstov/packer-altlinuxspt.git
+[module "ispdn"]
+	path = templates/ispdn
+	url = https://git.selfip.ru/yoctocloud/packer-ispdn.git
 	branch = master
-	revision = 0a4c936d699bf22035ed54430016b6b4d00711cb
 [module "astralinux"]
 	path = templates/astralinux
 	url = https://github.com/yoctocloud/packer-astralinux.git
@@ -92,3 +91,7 @@
 	url = https://github.com/yoctocloud/packer-windows.git
 	branch = master
 	revision = 3bee32ca62e50231ed812a607d3a7b48b8f5e040
+[module "sph"]
+	path = templates/sph
+	url = https://git.selfip.ru/yoctocloud/packer-sph.git
+	branch = master
